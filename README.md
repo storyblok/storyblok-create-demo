@@ -13,10 +13,15 @@ A CLI to quickly start a Storyblok project
 <!-- tocstop -->
 # Usage
 <!-- usage -->
-1. Signup at https:/app.storyblok.com/
-2. Execute follwing command with the space access token:
-
 ```sh-session
-$ npx create-storyblok-app --key YOUR_STORYBLOK_TOKEN
+$ npm install -g create-storyblok-app
+$ create-storyblok-app COMMAND
+running command...
+$ create-storyblok-app (-v|--version|version)
+create-storyblok-app/0.0.0 darwin-x64 node-v16.1.0
+$ create-storyblok-app --help [COMMAND]
+USAGE
+  $ create-storyblok-app COMMAND
+...
 ```
 <!-- usagestop -->
