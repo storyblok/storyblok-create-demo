@@ -1,0 +1,41 @@
+{
+  "name": "create-storyblok-app",
+  "description": "A CLI to quickly start a Storyblok project",
+  "version": "0.0.0",
+  "author": "Alexander Feiglstorfer",
+  "bin": {
+    "create-storyblok-app": "./bin/run"
+  },
+  "bugs": "https://github.com/storyblok/create-storyblok-app/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "inquirer": "^8.1.1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "homepage": "https://github.com/storyblok/create-storyblok-app",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "bin": "create-storyblok-app"
+  },
+  "repository": "storyblok/create-storyblok-app",
+  "scripts": {
+    "prepack": "oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
