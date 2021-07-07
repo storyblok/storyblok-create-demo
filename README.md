@@ -8,20 +8,10 @@ A CLI to quickly start a Storyblok project
 [![Downloads/week](https://img.shields.io/npm/dw/create-storyblok-app.svg)](https://npmjs.org/package/create-storyblok-app)
 [![License](https://img.shields.io/npm/l/create-storyblok-app.svg)](https://github.com/storyblok/create-storyblok-app/blob/master/package.json)
 
-<!-- toc -->
-* [Usage](#usage)
-<!-- tocstop -->
 # Usage
-<!-- usage -->
+
+1. Signup at https:/app.storyblok.com/
+2. Execute follwing command with the space access token:
+
 ```sh-session
-$ npm install -g create-storyblok-app
-$ create-storyblok-app COMMAND
-running command...
-$ create-storyblok-app (-v|--version|version)
-create-storyblok-app/0.0.0 darwin-x64 node-v16.1.0
-$ create-storyblok-app --help [COMMAND]
-USAGE
-  $ create-storyblok-app COMMAND
-...
-```
-<!-- usagestop -->
+$ npx create-storyblok-app --key YOUR_STORYBLOK_TOKEN

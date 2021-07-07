@@ -14,7 +14,8 @@ class CreateStoryblokAppCommand extends Command {
       throw new Error('Please provide your access key with the --key argument')
     }
 
-    this.log(`hello ${token} from ./src/index.js`)
+    this.log(`Welcome to the Storyblok starter CLI!`)
+    this.log('')
 
     inquirer
       .prompt([
@@ -60,13 +61,17 @@ class CreateStoryblokAppCommand extends Command {
             'SpsQWF7qrWUOkusdMzNZWAtt': token
           })
         }
-        console.log('✓ Project created!')
+        console.log('')
+        console.log('')
+        console.log('✓ Project created! Now just execute following commands:')
+        console.log('')
         console.log('')
         if (answers.packageManager === 'yarn') {
           console.log('  cd ./' + answers.folder + ' && yarn && yarn dev')
         } else {
           console.log('  cd ./' + answers.folder + ' && npm install && npm run dev')
         }
+        console.log('')
         console.log('')
       })
       .catch((error) => {

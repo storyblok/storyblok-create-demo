@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-component": "node ./generators/copy.js"
   },
   "dependencies": {
     "axios": "^0.21.1",

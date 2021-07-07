@@ -6,7 +6,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "create-component": "node ./generators/copy.js"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",

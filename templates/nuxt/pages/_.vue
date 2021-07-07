@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto px-4">
     <div class="m-4 wrapper">
-      <a :href="editorPath" class="edit-button shadow-lg text-xl text-white p-2.5 px-5 bg-pink-600 rounded-lg">
+      <a :href="editorPath" class="edit-button shadow-lg text-xl text-white p-2.5 px-5 bg-pink-600 rounded-lg" v-if="!inEditor">
         Edit this page
       </a>
       <logo />
@@ -22,6 +22,10 @@ export default {
   },
 
   computed: {
+    inEditor() {
+      return typeof window !== 'undefined' && window.location != window.parent.location
+    },
+
     editorPath() {
       return `/editor.html#!/edit/${this.story.id}`
     }
