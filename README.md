@@ -48,7 +48,7 @@ yarn && yarn dev
 4. Open your localhost and click on the "Edit this page" button on the top left to edit the page inside of Storyblok.
 
 
-# Local Usage
+### Local Usage
 
 You can also start the CLI locally from this repository
 
