@@ -1,15 +1,15 @@
 import React from 'react'
-import DynamicComponent from '../components/DynamicComponent'
-import { sbEditable } from '../lib/storyblok'
+import DynamicComponent from './dynamic-component'
+import {sbEditable} from '@storyblok/storyblok-editable'
 
-const Grid = ({ blok }) => {
+const Grid = ({blok}) => {
   return (
-    <div {...Editable(blok)} className="grid">
-      {blok.columns.map((blok) =>
-        (<DynamicComponent blok={blok} key={blok._uid}/>)
-      )}
-    </div>
+    <ul className="flex py-8" {...sbEditable(blok)}>
+      {blok.columns.map(blok => (
+        <li key={blok._uid} className="flex-auto px-6"><DynamicComponent blok={blok}  /></li>
+      ))}
+    </ul>
   )
 }
- 
+
 export default Grid

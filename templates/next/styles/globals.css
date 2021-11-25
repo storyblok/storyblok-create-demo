@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.edit-button {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}

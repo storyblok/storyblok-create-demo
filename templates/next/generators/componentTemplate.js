@@ -1,8 +1,8 @@
 import React from 'react'
-import DynamicComponent from '../components/DynamicComponent'
-import { sbEditable } from '../lib/storyblok'
+import DynamicComponent from '../components/dynamic-component'
+import {sbEditable} from '../lib/storyblok'
 
-export default ({ blok }) => {
+export default ({blok}) => {
   return (
     <div {...Editable(blok)}>
       This is a component you created with the CLI. Change its code in the components/ folder.
@@ -12,7 +12,6 @@ export default ({ blok }) => {
 
         {blok.YOUR_TEXT_FIELD}
       */}
-
 
       {/*
         Use this code if you want to render a block field:

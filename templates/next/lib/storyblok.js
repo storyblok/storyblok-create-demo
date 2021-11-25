@@ -1,68 +1,55 @@
-import { useEffect, useState } from "react";
-import StoryblokClient from "storyblok-js-client";
+import {useEffect, useState} from 'react'
+import StoryblokClient from 'storyblok-js-client'
 
 const Storyblok = new StoryblokClient({
-  accessToken: "SpsQWF7qrWUOkusdMzNZWAtt",
+  accessToken: 'SpsQWF7qrWUOkusdMzNZWAtt',
   cache: {
-    clear: "auto",
-    type: "memory",
+    clear: 'auto',
+    type: 'memory',
   },
-});
-
-export function sbEditable(blok) {
-  if (typeof blok !== 'object' || typeof blok._editable === 'undefined') {
-    return {}
-  }
-
-  const options = JSON.parse(blok._editable.replace(/^<!--#storyblok#/, '').replace(/-->$/, ''))
-
-  return {
-    'data-blok-c': JSON.stringify(options),
-    'data-blok-uid': options.id + '-' + options.uid
-  }
-}
+})
 
 export function useStoryblok(originalStory, preview) {
-  let [story, setStory] = useState(originalStory);
+  let [story, setStory] = useState(originalStory)
 
   // adds the events for updating the visual editor
   // see https://www.storyblok.com/docs/guide/essentials/visual-editor#initializing-the-storyblok-js-bridge
   function initEventListeners() {
-    const { StoryblokBridge } = window;
-    if (typeof StoryblokBridge !== "undefined") {
+    const {StoryblokBridge} = window
+    if (typeof StoryblokBridge !== 'undefined') {
       // initialize the bridge with your token
       const storyblokInstance = new StoryblokBridge({
-        customParent: 'http://localhost:3000'
-      });
+        customParent: 'http://localhost:3000',
+      })
 
       // reload on Next.js page on save or publish event in the Visual Editor
-      storyblokInstance.on(["change", "published"], () =>
-        location.reload(true)
-      );
+      storyblokInstance.on(['change', 'published'], () =>
+        location.reload(true),
+      )
 
       // live update the story on input events
-      storyblokInstance.on("input", (event) => {
+      storyblokInstance.on('input', event => {
         // check if the ids of the event and the passed story match
         if (story && event.story.content._uid === story.content._uid) {
           // change the story content through the setStory function
-          setStory(event.story);
+          setStory(event.story)
         }
-      });
+      })
 
-      storyblokInstance.on("enterEditmode", (event) => {
+      storyblokInstance.on('enterEditmode', event => {
         // loading the draft version on initial enter of editor
         Storyblok.get(`cdn/stories/${event.storyId}`, {
-          version: "draft",
+          version: 'draft',
         })
-          .then(({ data }) => {
-            if (data.story) {
-              setStory(data.story);
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      });
+        .then(({data}) => {
+          if (data.story) {
+            setStory(data.story)
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      })
     }
   }
 
@@ -70,18 +57,18 @@ export function useStoryblok(originalStory, preview) {
   // see https://www.storyblok.com/docs/guide/essentials/visual-editor#installing-the-storyblok-js-bridge
   function addBridge(callback) {
     // check if the script is already present
-    const existingScript = document.getElementById("storyblokBridge");
+    const existingScript = document.getElementById('storyblokBridge')
     if (!existingScript) {
-      const script = document.createElement("script");
-      script.src = "//app.storyblok.com/f/storyblok-v2-latest.js";
-      script.id = "storyblokBridge";
-      document.body.appendChild(script);
-      script.onload = () => {
-        // once the scrip is loaded, init the event listeners
-        callback();
-      };
-    } else {
-      callback();
+      const script = document.createElement('script')
+      script.src = '//app.storyblok.com/f/storyblok-v2-latest.js'
+      script.id = 'storyblokBridge'
+      document.body.appendChild(script)
+      script.addEventListener('load', () => {
+        // once the script is loaded, init the event listeners
+        callback()
+      })
+    } else if (existingScript) {
+      callback()
     }
   }
 
@@ -89,11 +76,11 @@ export function useStoryblok(originalStory, preview) {
     // only load inside preview mode
     if (preview) {
       // first load the bridge, then initialize the event listeners
-      addBridge(initEventListeners);
+      addBridge(initEventListeners)
     }
-  }, [originalStory, preview, setStory]); // runs the effect only once & defines effect dependencies
+  }, [originalStory, preview, setStory]) // runs the effect only once & defines effect dependencies
 
-  return story;
+  return story
 }
 
-export default Storyblok;
+export default Storyblok
