@@ -42,7 +42,7 @@
 npx create-storyblok-app --key YOUR_STORYBLOK_PREVIEW_TOKEN
 
 cd my-app
-yarn && yarn dev
+npm i && npm run dev
 ```
 
 4. Open your localhost and click on the "Edit this page" button on the top left to edit the page inside of Storyblok.
@@ -53,6 +53,6 @@ yarn && yarn dev
 You can also start the CLI locally from this repository
 
 ```sh-session
-yarn
+npm i
 ./bin/run --key YOUR_STORYBLOK_PREVIEW_TOKEN
 ```
