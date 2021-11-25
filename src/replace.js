@@ -8,7 +8,9 @@ module.exports = (file, replacements) => {
       }
 
       for (const from in replacements) {
-        data = data.replace(from, replacements[from])
+        if (from) {
+          data = data.replace(from, replacements[from])
+        }
       }
 
       fs.writeFile(file, data, 'utf8', function (err) {

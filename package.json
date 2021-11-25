@@ -1,7 +1,7 @@
 {
   "name": "create-storyblok-app",
   "description": "A CLI to quickly start a Storyblok project",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "author": "Alexander Feiglstorfer",
   "bin": {
     "create-storyblok-app": "./bin/run"
@@ -19,7 +19,7 @@
     "@oclif/dev-cli": "^1"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=9.0.0"
   },
   "files": [
     "/bin",
@@ -37,7 +37,7 @@
   },
   "repository": "storyblok/create-storyblok-app",
   "scripts": {
-    "posttest": "eslint .",
+    "posttest": "eslint -c ./.eslintrc.json src",
     "prepack": "oclif-dev readme",
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md"
