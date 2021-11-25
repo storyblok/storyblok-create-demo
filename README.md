@@ -14,4 +14,12 @@ A CLI to quickly start a Storyblok project
 2. Execute follwing command with the space access token:
 
 ```sh-session
-$ npx create-storyblok-app --key YOUR_STORYBLOK_TOKEN
+npx create-storyblok-app --key YOUR_STORYBLOK_PREVIEW_TOKEN
+```
+
+
+# Local usage
+
+```sh-session
+ ./bin/run --key YOUR_STORYBLOK_PREVIEW_TOKEN
+```
