@@ -19,7 +19,7 @@ export function useStoryblok(originalStory, preview) {
     if (typeof StoryblokBridge !== 'undefined') {
       // initialize the bridge with your token
       const storyblokInstance = new StoryblokBridge({
-        customParent: 'http://localhost:3000',
+        customParent: window.location.origin,
       })
 
       // reload on Next.js page on save or publish event in the Visual Editor
