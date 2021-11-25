@@ -53,5 +53,6 @@ yarn && yarn dev
 You can also start the CLI locally from this repository
 
 ```sh-session
+yarn
  ./bin/run --key YOUR_STORYBLOK_PREVIEW_TOKEN
 ```
