@@ -4,7 +4,7 @@ import {sbEditable} from '../lib/storyblok'
 
 export default ({blok}) => {
   return (
-    <div {...Editable(blok)}>
+    <div {...sbEditable(blok)}>
       This is a component you created with the CLI. Change its code in the components/ folder.
 
       {/*

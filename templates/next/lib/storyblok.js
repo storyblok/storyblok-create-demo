@@ -80,6 +80,10 @@ export function useStoryblok(originalStory, preview) {
     }
   }, [originalStory, preview, setStory]) // runs the effect only once & defines effect dependencies
 
+  useEffect(() => {
+    setStory(originalStory)
+  }, [originalStory])
+
   return story
 }
 
