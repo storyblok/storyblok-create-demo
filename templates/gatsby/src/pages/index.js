@@ -18,7 +18,7 @@ const IndexPage = ({data, location}) => {
       <header>
         <div className="m-4 flex">
           <Logo />
-          {!isInEditor && (<a href={`/editor.html#!/edit/${story.internalId}`} className="edit-button shadow-lg text-xl text-white p-2.5 px-5 bg-pink-600 rounded-lg">
+          {!isInEditor && (<a href={`/editor.html#/edit/${story.internalId}`} className="edit-button shadow-lg text-xl text-white p-2.5 px-5 bg-pink-600 rounded-lg">
             Edit this page
           </a>)}
         </div>

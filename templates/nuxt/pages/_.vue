@@ -27,7 +27,7 @@ export default {
     },
 
     editorPath() {
-      return `/editor.html#!/edit/${this.story.id}`
+      return `/editor.html#/edit/${this.story.id}`
     }
   },
 
