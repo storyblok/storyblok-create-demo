@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Storyblok</title>
+    <title>Storyblok Admin</title>
   </head>
   <body>
-    <link
-      href="https://app-beta.storyblok.com/css/index-latest.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <div id="root"></div>
-    <div id="page-load">
-      <div><div></div></div>
-    </div>
+    <div id="app"></div>
     <script type="text/javascript">
-      STORYBLOK_ONE_PROTO = true;
-      STORYBLOK_PREVIEW_URL = "http://localhost:8000/";
-      STORYBLOK_TECHNOLOGY = "nuxt";
-      STORYBLOK_EXPERIMENTAL = true;
+      STORYBLOK_TECHNOLOGY = 'gatsby'
+      STORYBLOK_PREVIEW_URL = 'http://localhost:3000/'
     </script>
-    <script
-      src="https://app-beta.storyblok.com/js/app-latest.js"
-      type="text/javascript"
-    ></script>
+    <script src="https://app.storyblok.com/f/app-latest.js" type="text/javascript"></script>
   </body>
 </html>
