@@ -1,87 +1,73 @@
 const {Command, flags} = require('@oclif/command')
 const inquirer = require('inquirer')
-const copy = require('./copy')
-const replace = require('./replace')
+const clone = require('git-clone/promise')
 const path = require('path')
+const fs = require('fs')
+const copy = require('./copy')
+const prompts = require('./prompts')
+const frameworks = require('./frameworks')
+const replace = require('./replace')
 const generator = path.resolve(__dirname, './')
 
 class CreateStoryblokAppCommand extends Command {
   async run() {
-    const {flags} = this.parse(CreateStoryblokAppCommand)
-    const token = flags.key
+    try {
+      const log = this.log
+      const {flags} = this.parse(CreateStoryblokAppCommand)
+      const token = flags.key
 
-    if (!token) {
-      throw new Error('Please provide your access key with the --key argument')
-    }
-
-    this.log('Welcome to the Storyblok starter CLI!')
-    this.log('')
-
-    inquirer
-    .prompt([
-      {
-        type: 'input',
-        name: 'folder',
-        message: 'Choose a folder name:',
-        validate(value) {
-          if (value.length > 0) {
-            return true
-          }
-          return 'Please enter a valid name for your folder:'
-        },
-      },
-      {
-        type: 'list',
-        name: 'framework',
-        message: 'Select framework:',
-        choices: [
-          {name: 'Nuxt.js (Vue.js)', value: 'nuxt'},
-          {name: 'Next.js (React)', value: 'next'},
-          {name: 'Gatsby.js (React)', value: 'gatsby'},
-        ],
-      },
-      {
-        type: 'list',
-        name: 'packageManager',
-        message: 'Select package manager:',
-        choices: [
-          {name: 'yarn', value: 'yarn'},
-          {name: 'npm', value: 'npm'},
-        ],
-      },
-    ])
-    .then(answers => {
-      copy(`${generator}/../templates/${answers.framework}`, answers.folder)
-
-      if (answers.framework === 'nuxt') {
-        replace(path.join(answers.folder, 'nuxt.config.js'), {
-          SpsQWF7qrWUOkusdMzNZWAtt: token,
-        })
-      } else if (answers.framework === 'gatsby') {
-        replace(path.join(answers.folder, 'gatsby-config.js'), {
-          SpsQWF7qrWUOkusdMzNZWAtt: token,
-        })
-      } else {
-        replace(path.join(answers.folder, 'lib', 'storyblok.js'), {
-          SpsQWF7qrWUOkusdMzNZWAtt: token,
-        })
+      if (!token) {
+        throw new Error('Please provide your access key with the --key argument')
       }
-      console.log('')
-      console.log('')
-      console.log('✓ Project created! Now just execute following commands:')
-      console.log('')
-      console.log('')
+
+      log('Welcome to the Storyblok starter CLI!')
+      log('')
+      log('')
+
+      const answers = await inquirer.prompt(prompts)
+      const {framework, folder} = answers
+      const frameworkDetails = frameworks.find(f => f.value === framework)
+      const gettingStartedRepo = 'https://github.com/storyblok/getting-started.git'
+      await clone(gettingStartedRepo, 'temp-started', {
+        shallow: true,
+        args: '',
+        checkout: 'master',
+      })
+
+      copy(`./temp-started/${framework}`, folder)
+      fs.rmSync('./temp-started', {recursive: true})
+      replace(path.join(answers.folder, frameworkDetails.config), {
+        [frameworkDetails.token]: token,
+      })
+
+      const publicPath = `./${folder}/${frameworkDetails.public}`
+      const localhostPath = `http://localhost:${frameworkDetails.port}/`
+      if (fs.existsSync(publicPath)) {
+        fs.copyFileSync(`${generator}/../templates/static/editor.html`, publicPath + '/editor.html')
+      } else {
+        copy(`${generator}/../templates/static`, publicPath)
+      }
+
+      replace(`./${publicPath}/editor.html`, {
+        gatsby: framework,
+        'http://localhost:3000/': localhostPath,
+      })
+
+      log('')
+      log('')
+      log('✓ Project created! Now just execute following commands:')
+
       if (answers.packageManager === 'yarn') {
-        console.log('  cd ./' + answers.folder + ' && yarn && yarn dev')
+        log(`- Start server: cd ./${answers.folder} && yarn && yarn ${frameworkDetails.start}`)
       } else {
-        console.log('  cd ./' + answers.folder + ' && npm install && npm run dev')
+        log(`- Start server: cd ./${answers.folder} && npm install && npm run ${frameworkDetails.start}`)
       }
-      console.log('')
-      console.log('')
-    })
-    .catch(error => {
+      log(`- Start editing: ${localhostPath}editor.html`)
+      log('')
+      log('')
+    } catch (error) {
       console.error(error)
-    })
+    }
   }
 }
 

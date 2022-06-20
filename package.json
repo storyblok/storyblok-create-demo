@@ -16,7 +16,8 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "eslint": "^8.3.0",
-    "eslint-config-oclif": "^3.1.0"
+    "eslint-config-oclif": "^3.1.0",
+    "git-clone": "^0.2.0"
   },
   "engines": {
     "node": ">=9.0.0"
