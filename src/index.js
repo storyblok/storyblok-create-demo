@@ -1,11 +1,14 @@
 const {Command, flags} = require('@oclif/command')
 const inquirer = require('inquirer')
 const clone = require('git-clone/promise')
+const fetch = require('node-fetch')
+const chalk = require('chalk')
 const path = require('path')
 const fs = require('fs')
 const copy = require('./copy')
 const prompts = require('./prompts')
 const frameworks = require('./frameworks')
+const {createPublicFolder, addCustomParentFramework} = require('./helper-replace')
 const replace = require('./replace')
 const generator = path.resolve(__dirname, './')
 
@@ -40,29 +43,33 @@ class CreateStoryblokAppCommand extends Command {
         [frameworkDetails.token]: token,
       })
 
+      const localhostPath = `http://localhost:${frameworkDetails.port}`
       const publicPath = `./${folder}/${frameworkDetails.public}`
-      const localhostPath = `http://localhost:${frameworkDetails.port}/`
-      if (fs.existsSync(publicPath)) {
-        fs.copyFileSync(`${generator}/../templates/static/editor.html`, publicPath + '/editor.html')
-      } else {
-        copy(`${generator}/../templates/static`, publicPath)
-      }
-
-      replace(`./${publicPath}/editor.html`, {
-        gatsby: framework,
-        'http://localhost:3000/': localhostPath,
+      createPublicFolder({
+        framework,
+        localhostPath,
+        publicPath,
+        generator,
       })
 
-      log('')
-      log('')
-      log('✓ Project created! Now just execute following commands:')
+      addCustomParentFramework({
+        folder,
+        framework,
+        frameworkDetails,
+        localhostPath,
+      })
 
-      if (answers.packageManager === 'yarn') {
-        log(`- Start server: cd ./${answers.folder} && yarn && yarn ${frameworkDetails.start}`)
-      } else {
-        log(`- Start server: cd ./${answers.folder} && npm install && npm run ${frameworkDetails.start}`)
-      }
-      log(`- Start editing: ${localhostPath}editor.html`)
+      const story = await fetch(`https://api.storyblok.com/v2/cdn/stories/home?version=draft&token=${token}`).then(res => res.json())
+      const storyId = story.story.id
+
+      log('')
+      log('')
+      log(chalk.green('✓ Project created! Now just execute following commands:'))
+
+      const mangerInstall = answers.packageManager === 'yarn' ? 'yarn' : 'npm install'
+      const mangerRun = answers.packageManager === 'yarn' ? 'yarn' : 'npm run'
+      log('1. Start server: ', chalk.yellow(`cd ./${answers.folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`))
+      log('2. Start editing:', chalk.yellow(`${localhostPath}/editor.html/#/edit/${storyId}`))
       log('')
       log('')
     } catch (error) {
