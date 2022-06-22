@@ -2,7 +2,7 @@ module.exports = [
   {
     name: 'Vue.js',
     value: 'vuejs',
-    start: 'start',
+    start: 'dev',
     token: '9I0NMaGJZQaJQ4Qzmm5cHwtt',
     config: 'src/main.js',
     bridge: 'src/pages/Home.vue',

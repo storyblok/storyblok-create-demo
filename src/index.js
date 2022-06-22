@@ -14,6 +14,8 @@ const generator = path.resolve(__dirname, './')
 
 class CreateStoryblokAppCommand extends Command {
   async run() {
+    const answers = await inquirer.prompt(prompts)
+    const {framework, folder} = answers
     try {
       const log = this.log
       const {flags} = this.parse(CreateStoryblokAppCommand)
@@ -23,12 +25,9 @@ class CreateStoryblokAppCommand extends Command {
         throw new Error('Please provide your access key with the --key argument')
       }
 
+      log('')
+      log('')
       log('Welcome to the Storyblok starter CLI!')
-      log('')
-      log('')
-
-      const answers = await inquirer.prompt(prompts)
-      const {framework, folder} = answers
       const frameworkDetails = frameworks.find(f => f.value === framework)
       const gettingStartedRepo = 'https://github.com/storyblok/getting-started.git'
       await clone(gettingStartedRepo, 'temp-started', {
@@ -68,12 +67,14 @@ class CreateStoryblokAppCommand extends Command {
 
       const mangerInstall = answers.packageManager === 'yarn' ? 'yarn' : 'npm install'
       const mangerRun = answers.packageManager === 'yarn' ? 'yarn' : 'npm run'
-      log('1. Start server: ', chalk.yellow(`cd ./${answers.folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`))
+      log('1. Start the server: ', chalk.yellow(`cd ./${answers.folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`))
       log('2. Start editing:', chalk.yellow(`${localhostPath}/editor.html/#/edit/${storyId}`))
       log('')
       log('')
     } catch (error) {
       console.error(error)
+      fs.rmSync('./temp-started', {recursive: true})
+      fs.rmSync(`./${folder}`, {recursive: true})
     }
   }
 }
