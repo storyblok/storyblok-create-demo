@@ -9,6 +9,7 @@ module.exports = [
       if (value.length > 0) {
         return true
       }
+
       return 'Please enter a valid name for your folder:'
     },
   },

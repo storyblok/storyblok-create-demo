@@ -14,13 +14,10 @@ module.exports = function (repo, targetPath, opts) {
   const args = ['clone']
 
   if (opts.shallow) {
-    args.push('--depth')
-    args.push('1')
+    args.push('--depth', '1')
   }
 
-  args.push('--')
-  args.push(repo)
-  args.push(targetPath)
+  args.push('--', repo, targetPath)
 
   const process = spawn(git, args)
   return new Promise((resolve, reject) => {

@@ -1,6 +1,3 @@
 {
-  "extends": "oclif",
-  "rules": {
-    "node/no-unpublished-require": "warn"
-  }
+  "extends": "oclif"
 }
