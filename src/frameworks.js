@@ -35,7 +35,7 @@ module.exports = [
     start: 'dev',
     token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
     config: 'pages/_app.js',
-    bridge: 'pages/index.js',
+    bridge: 'pages/home.js',
     public: 'public',
     port: '3000',
   },
