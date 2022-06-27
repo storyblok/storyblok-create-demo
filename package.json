@@ -4,7 +4,7 @@
   "version": "0.0.13",
   "author": "Alexander Feiglstorfer",
   "bin": {
-    "@storyblok/create-demo": "bin/run"
+    "create-demo": "bin/run"
   },
   "bugs": {
     "url": "https://github.com/storyblok/storyblok-create-demo/issues"

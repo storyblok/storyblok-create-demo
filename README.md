@@ -2,9 +2,9 @@
 	<a  href="https://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app"  align="center">
 		<img  src="https://a.storyblok.com/f/88751/1776x360/51af0ebe23/shared_logos_framework.png" alt="Storyblok Logo">
 	</a>
-	<h1 align="center">Create Storyblok App</h1>
+	<h1 align="center">Create Storyblok Demo</h1>
 	<p align="center">A CLI to quickly start a project with your favourite framework, already set up with <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
-  <p>Supports <a href="https://nextjs.org/" target="_blank">Next.js</a>, <a href="https://nuxtjs.org/" target="_blank">Nuxt.js</a> and <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</a></p>
+  <p>Supports <a href="https://nextjs.org/" target="_blank">Next.js</a>, <a href="https://nuxtjs.org/" target="_blank">Nuxt.js (2 & 3)</a>, <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</a>, <a href="https://vuejs.org/" target="_blank">Vue.js</a>, <a href="https://reactjs.org/" target="_blank">React.js</a>, <a href="https://remix.run/" target="_blank">Remix</a> and <a href="https://svelte.dev/" target="_blank">Svelte</a></p>
 </div>
 
 <p align="center">
