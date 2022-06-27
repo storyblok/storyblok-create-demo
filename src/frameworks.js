@@ -55,7 +55,7 @@ module.exports = [
     start: 'dev',
     token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
     config: 'app/root.jsx',
-    bridge: 'app/routes/index.jsx',
+    bridge: 'app/routes/home.jsx',
     public: 'public',
     port: '3000',
   },
