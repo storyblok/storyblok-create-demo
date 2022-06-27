@@ -75,7 +75,7 @@ module.exports = [
     start: 'start',
     token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
     config: 'gatsby-config.js',
-    bridge: 'src/pages/index.js',
+    bridge: 'src/pages/home.js',
     public: 'static',
     port: '8000',
   },
