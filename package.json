@@ -1,7 +1,7 @@
 {
   "name": "create-storyblok-app",
   "description": "A CLI to quickly start a Storyblok project",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Alexander Feiglstorfer",
   "bin": {
     "create-storyblok-app": "./bin/run"
@@ -22,7 +22,7 @@
     "node-fetch": "^2.6.7"
   },
   "engines": {
-    "node": ">=9.0.0"
+    "node": ">=14.0.0"
   },
   "files": [
     "/bin",

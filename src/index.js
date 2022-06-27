@@ -1,6 +1,6 @@
 const {Command, flags} = require('@oclif/command')
 const inquirer = require('inquirer')
-const clone = require('git-clone/promise')
+const clone = require('./clone')
 const fetch = require('node-fetch')
 const chalk = require('chalk')
 const path = require('path')
