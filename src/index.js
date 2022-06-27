@@ -15,7 +15,7 @@ const generator = path.resolve(__dirname, './')
 class CreateStoryblokAppCommand extends Command {
   async run() {
     const answers = await inquirer.prompt(prompts)
-    const {framework, folder} = answers
+    const {framework, folder, packageManager} = answers
     try {
       const log = this.log
       const {flags} = this.parse(CreateStoryblokAppCommand)
@@ -38,7 +38,7 @@ class CreateStoryblokAppCommand extends Command {
 
       copy(`./temp-started/${framework}`, folder)
       fs.rmSync('./temp-started', {recursive: true})
-      replace(path.join(answers.folder, frameworkDetails.config), {
+      replace(path.join(folder, frameworkDetails.config), {
         [frameworkDetails.token]: token,
       })
 
@@ -65,9 +65,9 @@ class CreateStoryblokAppCommand extends Command {
       log('')
       log(chalk.green('✓ Project created! Now just execute following commands:'))
 
-      const mangerInstall = answers.packageManager === 'yarn' ? 'yarn' : 'npm install'
-      const mangerRun = answers.packageManager === 'yarn' ? 'yarn' : 'npm run'
-      log('1. Start the server: ', chalk.yellow(`cd ./${answers.folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`))
+      const mangerInstall = packageManager === 'yarn' ? 'yarn' : 'npm install'
+      const mangerRun = packageManager === 'yarn' ? 'yarn' : 'npm run'
+      log('1. Start the server: ', chalk.yellow(`cd ./${folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`))
       log('2. Start editing:', chalk.yellow(`${localhostPath}/editor.html/#/edit/${storyId}`))
       log('')
       log('')

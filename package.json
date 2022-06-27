@@ -1,7 +1,7 @@
 {
   "name": "create-storyblok-app",
   "description": "A CLI to quickly start a Storyblok project",
-  "version": "0.0.11",
+  "version": "0.0.8",
   "author": "Alexander Feiglstorfer",
   "bin": {
     "create-storyblok-app": "./bin/run"
@@ -10,15 +10,16 @@
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "@oclif/plugin-help": "^3",
-    "inquirer": "^8.1.1"
+    "@oclif/plugin-help": "^5",
+    "inquirer": "^8.2.4",
+    "node-fetch": "^2.6.7",
+    "chalk": "^4.1.2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
-    "chalk": "^4.1.2",
-    "eslint": "^8.3.0",
-    "eslint-config-oclif": "^3.1.0",
-    "node-fetch": "^2.6.7"
+    "eslint": "^8.18.0",
+    "eslint-config-oclif": "^4.0.0",
+    "eslint-plugin-unicorn": "^42.0.0"
   },
   "engines": {
     "node": ">=14.0.0"
@@ -26,7 +27,8 @@
   "files": [
     "/bin",
     "/src",
-    "/templates"
+    "/templates",
+    "/node-modules"
   ],
   "homepage": "https://github.com/storyblok/create-storyblok-app",
   "keywords": [
