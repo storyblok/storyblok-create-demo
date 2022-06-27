@@ -39,13 +39,13 @@
 3. Execute follwing command with the space preview access token:
 
 ```sh-session
-npx create-storyblok-app --key YOUR_STORYBLOK_PREVIEW_TOKEN
+npx @storyblok/create-demo --key YOUR_STORYBLOK_PREVIEW_TOKEN
 
 cd my-app
 npm i && npm run dev
 ```
 
-4. Open your localhost and click on the "Edit this page" button on the top left to edit the page inside of Storyblok.
+4. Open the Storyblok editor and directly edit your content locally: http://localhost:3000/editor.html
 
 
 ### Local Usage
