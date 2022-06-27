@@ -1,12 +1,14 @@
 {
-  "name": "create-storyblok-app",
+  "name": "@storyblok/create-demo",
   "description": "A CLI to quickly start a Storyblok project",
   "version": "0.0.8",
   "author": "Alexander Feiglstorfer",
   "bin": {
-    "create-storyblok-app": "./bin/run"
+    "@storyblok/create-demo": "bin/run"
   },
-  "bugs": "https://github.com/storyblok/create-storyblok-app/issues",
+  "bugs": {
+    "url": "https://github.com/storyblok/storyblok-create-demo/issues"
+  },
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -29,16 +31,19 @@
     "/src",
     "/templates"
   ],
-  "homepage": "https://github.com/storyblok/create-storyblok-app",
+  "homepage": "https://github.com/storyblok/storyblok-create-demo",
   "keywords": [
     "oclif"
   ],
   "license": "MIT",
   "main": "src/index.js",
   "oclif": {
-    "bin": "create-storyblok-app"
+    "bin": "@storyblok/create-demo"
   },
-  "repository": "storyblok/create-storyblok-app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/storyblok/storyblok-create-demo.git"
+  },
   "scripts": {
     "posttest": "eslint -c ./.eslintrc.json src",
     "prepack": "oclif-dev readme",
