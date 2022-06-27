@@ -1,87 +1,81 @@
 const {Command, flags} = require('@oclif/command')
 const inquirer = require('inquirer')
-const copy = require('./copy')
-const replace = require('./replace')
+const clone = require('git-clone/promise')
+const fetch = require('node-fetch')
+const chalk = require('chalk')
 const path = require('path')
+const fs = require('fs')
+const copy = require('./copy')
+const prompts = require('./prompts')
+const frameworks = require('./frameworks')
+const {createPublicFolder, addCustomParentFramework} = require('./helper-replace')
+const replace = require('./replace')
 const generator = path.resolve(__dirname, './')
 
 class CreateStoryblokAppCommand extends Command {
   async run() {
-    const {flags} = this.parse(CreateStoryblokAppCommand)
-    const token = flags.key
+    const answers = await inquirer.prompt(prompts)
+    const {framework, folder} = answers
+    try {
+      const log = this.log
+      const {flags} = this.parse(CreateStoryblokAppCommand)
+      const token = flags.key
 
-    if (!token) {
-      throw new Error('Please provide your access key with the --key argument')
-    }
-
-    this.log('Welcome to the Storyblok starter CLI!')
-    this.log('')
-
-    inquirer
-    .prompt([
-      {
-        type: 'input',
-        name: 'folder',
-        message: 'Choose a folder name:',
-        validate(value) {
-          if (value.length > 0) {
-            return true
-          }
-          return 'Please enter a valid name for your folder:'
-        },
-      },
-      {
-        type: 'list',
-        name: 'framework',
-        message: 'Select framework:',
-        choices: [
-          {name: 'Nuxt.js (Vue.js)', value: 'nuxt'},
-          {name: 'Next.js (React)', value: 'next'},
-          {name: 'Gatsby.js (React)', value: 'gatsby'},
-        ],
-      },
-      {
-        type: 'list',
-        name: 'packageManager',
-        message: 'Select package manager:',
-        choices: [
-          {name: 'yarn', value: 'yarn'},
-          {name: 'npm', value: 'npm'},
-        ],
-      },
-    ])
-    .then(answers => {
-      copy(`${generator}/../templates/${answers.framework}`, answers.folder)
-
-      if (answers.framework === 'nuxt') {
-        replace(path.join(answers.folder, 'nuxt.config.js'), {
-          SpsQWF7qrWUOkusdMzNZWAtt: token,
-        })
-      } else if (answers.framework === 'gatsby') {
-        replace(path.join(answers.folder, 'gatsby-config.js'), {
-          SpsQWF7qrWUOkusdMzNZWAtt: token,
-        })
-      } else {
-        replace(path.join(answers.folder, 'lib', 'storyblok.js'), {
-          SpsQWF7qrWUOkusdMzNZWAtt: token,
-        })
+      if (!token) {
+        throw new Error('Please provide your access key with the --key argument')
       }
-      console.log('')
-      console.log('')
-      console.log('✓ Project created! Now just execute following commands:')
-      console.log('')
-      console.log('')
-      if (answers.packageManager === 'yarn') {
-        console.log('  cd ./' + answers.folder + ' && yarn && yarn dev')
-      } else {
-        console.log('  cd ./' + answers.folder + ' && npm install && npm run dev')
-      }
-      console.log('')
-      console.log('')
-    })
-    .catch(error => {
+
+      log('')
+      log('')
+      log('Welcome to the Storyblok starter CLI!')
+      const frameworkDetails = frameworks.find(f => f.value === framework)
+      const gettingStartedRepo = 'https://github.com/storyblok/getting-started.git'
+      await clone(gettingStartedRepo, 'temp-started', {
+        shallow: true,
+        args: '',
+        checkout: 'master',
+      })
+
+      copy(`./temp-started/${framework}`, folder)
+      fs.rmSync('./temp-started', {recursive: true})
+      replace(path.join(answers.folder, frameworkDetails.config), {
+        [frameworkDetails.token]: token,
+      })
+
+      const localhostPath = `http://localhost:${frameworkDetails.port}`
+      const publicPath = `./${folder}/${frameworkDetails.public}`
+      createPublicFolder({
+        framework,
+        localhostPath,
+        publicPath,
+        generator,
+      })
+
+      addCustomParentFramework({
+        folder,
+        framework,
+        frameworkDetails,
+        localhostPath,
+      })
+
+      const story = await fetch(`https://api.storyblok.com/v2/cdn/stories/home?version=draft&token=${token}`).then(res => res.json())
+      const storyId = story.story.id
+
+      log('')
+      log('')
+      log(chalk.green('✓ Project created! Now just execute following commands:'))
+
+      const mangerInstall = answers.packageManager === 'yarn' ? 'yarn' : 'npm install'
+      const mangerRun = answers.packageManager === 'yarn' ? 'yarn' : 'npm run'
+      log('1. Start the server: ', chalk.yellow(`cd ./${answers.folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`))
+      log('2. Start editing:', chalk.yellow(`${localhostPath}/editor.html/#/edit/${storyId}`))
+      log('')
+      log('')
+    } catch (error) {
       console.error(error)
-    })
+      fs.rmSync('./temp-started', {recursive: true})
+      fs.rmSync(`./${folder}`, {recursive: true})
+    }
   }
 }
 
