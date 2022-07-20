@@ -28,6 +28,16 @@ class CreateStoryblokAppCommand extends Command {
       log('')
       log('')
       log('Welcome to the Storyblok starter CLI!')
+
+      const story = await fetch(`https://api.storyblok.com/v2/cdn/stories/home?version=draft&token=${token}`).then(res => res.json())
+      let storyId = 0
+      if (story?.story) {
+        storyId = story.story.id
+      } else {
+        log(chalk.red('ⅹ Could not find the default story with the slug \'home\''))
+        return
+      }
+
       const frameworkDetails = frameworks.find(f => f.value === framework)
       const gettingStartedRepo = 'https://github.com/storyblok/getting-started.git'
       await clone(gettingStartedRepo, 'temp-started', {
@@ -58,8 +68,6 @@ class CreateStoryblokAppCommand extends Command {
         localhostPath,
       })
 
-      const story = await fetch(`https://api.storyblok.com/v2/cdn/stories/home?version=draft&token=${token}`).then(res => res.json())
-      const storyId = story.story.id
 
       log('')
       log('')
