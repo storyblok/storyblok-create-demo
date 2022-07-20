@@ -1,7 +1,7 @@
 {
   "name": "@storyblok/create-demo",
   "description": "A CLI to quickly start a Storyblok project",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "author": "Alexander Feiglstorfer",
   "bin": {
     "create-demo": "bin/run"
