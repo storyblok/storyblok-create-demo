@@ -68,7 +68,6 @@ class CreateStoryblokAppCommand extends Command {
         localhostPath,
       })
 
-
       log('')
       log('')
       log(chalk.green('✓ Project created! Now just execute following commands:'))
