@@ -20,21 +20,30 @@ class CreateStoryblokAppCommand extends Command {
       const log = this.log
       const {flags} = this.parse(CreateStoryblokAppCommand)
       const token = flags.key
+      const spaceRegion = flags?.region
+      let apiEndpoint = 'https://api.storyblok.com/v2/cdn/'
+      let regionParam = ''
 
       if (!token) {
         throw new Error('Please provide your access key with the --key argument')
+      }
+
+      if (spaceRegion && spaceRegion.startsWith('us-')) {
+        apiEndpoint = 'https://api-us.storyblok.com/v2/cdn/'
+        regionParam = `?region=${spaceRegion}`
       }
 
       log('')
       log('')
       log('Welcome to the Storyblok starter CLI!')
 
-      const story = await fetch(`https://api.storyblok.com/v2/cdn/stories/home?version=draft&token=${token}`).then(res => res.json())
+      const story = await fetch(`${apiEndpoint}stories/home?version=draft&token=${token}`).then(res => res.json())
       let storyId = 0
       if (story?.story) {
         storyId = story.story.id
       } else {
         log(chalk.red('ⅹ Could not find the default story with the slug \'home\''))
+        log(chalk.red('ⅹ Or the space is located in a region outside the EU. In that case please provide the \'--region\' parameter'))
         return
       }
 
@@ -75,7 +84,7 @@ class CreateStoryblokAppCommand extends Command {
       const mangerInstall = packageManager === 'yarn' ? 'yarn' : 'npm install'
       const mangerRun = packageManager === 'yarn' ? 'yarn' : 'npm run'
       log('1. Start the server: ', chalk.yellow(`cd ./${folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`))
-      log('2. Start editing:', chalk.yellow(`${localhostPath}/editor.html/#/edit/${storyId}`))
+      log('2. Start editing:', chalk.yellow(`${localhostPath}/editor.html/#/edit/${storyId}${regionParam}`))
       log('')
       log('')
     } catch (error) {
@@ -95,6 +104,7 @@ CreateStoryblokAppCommand.flags = {
   version: flags.version({char: 'v'}),
   help: flags.help({char: 'h'}),
   key: flags.string({char: 'k', description: 'Storyblok access key'}),
+  region: flags.string({char: 'r', description: 'space region'}),
 }
 
 module.exports = CreateStoryblokAppCommand

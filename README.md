@@ -47,6 +47,16 @@ npm i && npm run dev
 
 4. Open the Storyblok editor and directly edit your content locally: http://localhost:3000/editor.html
 
+## With a different region than EU 
+
+You can pass the `--region` parameter to scaffold with a different space region
+
+```sh-session
+npx @storyblok/create-demo --key YOUR_STORYBLOK_PREVIEW_TOKEN --region us-east-1
+
+cd my-app
+npm i && npm run dev
+```
 
 ### Local Usage
 
