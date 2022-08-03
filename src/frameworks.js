@@ -15,7 +15,7 @@ module.exports = [
     start: 'dev',
     token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
     config: 'nuxt.config.js',
-    bridge: 'pages/index.vue',
+    bridge: 'pages/_.vue',
     public: 'static',
     port: '3000',
   },
