@@ -84,7 +84,7 @@ class CreateStoryblokAppCommand extends Command {
       const mangerInstall = packageManager === 'yarn' ? 'yarn' : 'npm install'
       const mangerRun = packageManager === 'yarn' ? 'yarn' : 'npm run'
       log('1. Start the server: ', chalk.yellow(`cd ./${folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`))
-      log('2. Start editing:', chalk.yellow(`${localhostPath}/editor.html/#/edit/${storyId}${regionParam}`))
+      log('2. Start editing:', chalk.yellow(`${localhostPath}/editor.html#/edit/${storyId}${regionParam}`))
       log('')
       log('')
     } catch (error) {

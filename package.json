@@ -1,7 +1,7 @@
 {
   "name": "@storyblok/create-demo",
   "description": "A CLI to quickly start a Storyblok project",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "author": "Alexander Feiglstorfer",
   "contributors": [
     {"name":"Lisi Linhart","url":"https://github.com/lisilinhart"}
