@@ -65,7 +65,7 @@ module.exports = [
     start: 'dev',
     token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
     config: 'src/routes/__layout.svelte',
-    bridge: 'src/routes/home.svelte',
+    bridge: 'src/routes/index.svelte',
     public: 'public',
     port: '3000',
   },
