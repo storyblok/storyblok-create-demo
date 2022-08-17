@@ -63,11 +63,14 @@ module.exports = [
     name: 'Svelte',
     value: 'sveltekit',
     start: 'dev',
-    token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
+    token: 'W1vLyxT5rQ15jBpANjnv0gtt',
     config: 'src/routes/__layout.svelte',
     bridge: 'src/routes/index.svelte',
-    public: 'public',
-    port: '3000',
+    public: 'static',
+    port: '5173',
+    https: true,
+    submodules: true,
+    branch: 'submodule-sveltekit'
   },
   {
     name: 'Gatsby.js (React)',

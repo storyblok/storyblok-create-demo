@@ -16,6 +16,10 @@ module.exports = function (repo, targetPath, opts) {
   if (opts.shallow) {
     args.push('--depth', '1')
   }
+  }
+  if (opts.checkout) {
+    args.push('--branch', opts.checkout)
+  }
 
   args.push('--', repo, targetPath)
 
