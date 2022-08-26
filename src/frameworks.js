@@ -70,7 +70,6 @@ module.exports = [
     port: '5173',
     https: true,
     submodules: true,
-    branch: 'submodule-sveltekit'
   },
   {
     name: 'Gatsby.js (React)',
