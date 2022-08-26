@@ -52,7 +52,8 @@ class CreateStoryblokAppCommand extends Command {
       await clone(gettingStartedRepo, 'temp-started', {
         shallow: true,
         args: '',
-        checkout: 'master',
+        checkout: frameworkDetails.branch ?? 'master',
+        submodules: frameworkDetails.submodules ?? false,
       })
 
       copy(`./temp-started/${framework}`, folder)
@@ -61,7 +62,8 @@ class CreateStoryblokAppCommand extends Command {
         [frameworkDetails.token]: token,
       })
 
-      const localhostPath = `http://localhost:${frameworkDetails.port}`
+      const protocol = frameworkDetails.https ? 'https' : 'http';
+      const localhostPath = `${protocol}://localhost:${frameworkDetails.port}`
       const publicPath = `./${folder}/${frameworkDetails.public}`
       createPublicFolder({
         framework,
