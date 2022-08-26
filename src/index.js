@@ -62,7 +62,7 @@ class CreateStoryblokAppCommand extends Command {
         [frameworkDetails.token]: token,
       })
 
-      const protocol = frameworkDetails.https ? 'https' : 'http';
+      const protocol = frameworkDetails.https ? 'https' : 'http'
       const localhostPath = `${protocol}://localhost:${frameworkDetails.port}`
       const publicPath = `./${folder}/${frameworkDetails.public}`
       createPublicFolder({
