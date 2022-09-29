@@ -66,3 +66,22 @@ You can also start the CLI locally from this repository
 npm i
 ./bin/run --key YOUR_STORYBLOK_PREVIEW_TOKEN
 ```
+
+### Framework Options
+
+The framework options can be set in `src/frameworks.js` and work in combination with the [getting-started](https://github.com/storyblok/getting-started) repository
+
+
+- `name`:  name of the framework
+- `value`: cli value to use for reference
+- `start`: local command to start the example
+- `token`: space token used in the demo repository
+- `config`: file that has the access token
+- `bridge`: file that is loading the bridge
+- `public`: public folder path for the static files
+- `port`:  port the framework starts, 
+- `branch`: (optional) for testing other branches on the `getting-started` repository
+- `https`: (optional) if the framework starts with https
+- `submodules`: (optional) if the framework in `getting-started` is a submodule
+- `tutorialLink`: (optional) - link to the framwork tutorial
+

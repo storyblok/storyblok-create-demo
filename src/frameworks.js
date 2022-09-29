@@ -70,6 +70,7 @@ module.exports = [
     port: '5173',
     https: true,
     submodules: true,
+    tutorialLink: 'https://www.storyblok.com/tp/the-storyblok-sveltekit-ultimate-tutorial',
   },
   {
     name: 'Gatsby.js (React)',
