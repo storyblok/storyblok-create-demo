@@ -114,7 +114,7 @@ class CreateStoryblokAppCommand extends Command {
           frameworkDetails,
           localhostPath,
         })
-        pathEditing = `${localhostPath}/editor.html#/edit/${storyId}${regionParam}`
+        pathEditing = `${localhostPath}editor.html#/edit/${storyId}${regionParam}`
       }
 
       log('')
