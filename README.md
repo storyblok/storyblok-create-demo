@@ -32,14 +32,14 @@
 </p>
 
 
-# Usage
+# Getting Started
 
 1. Signup at https://app.storyblok.com/
 2. Create a new space and retrieve the space preview token under Space -> Settings -> Api Keys
 3. Execute follwing command with the space preview access token:
 
 ```sh-session
-npx @storyblok/create-demo --key YOUR_STORYBLOK_PREVIEW_TOKEN
+npx @storyblok/create-demo
 
 cd my-app
 npm i && npm run dev
@@ -47,30 +47,41 @@ npm i && npm run dev
 
 4. Open the Storyblok editor and directly edit your content locally: http://localhost:3000/editor.html
 
-## With a different region than EU 
+# CLI Options
 
-You can pass the `--region` parameter to scaffold with a different space region
+The CLI has different options that can be filled, you can see all the options by running `npx @storyblok/create-demo --help`: 
 
-```sh-session
-npx @storyblok/create-demo --key YOUR_STORYBLOK_PREVIEW_TOKEN --region us-east-1
-
-cd my-app
-npm i && npm run dev
+```
+OPTIONS
+  -d, --folder=folder                  Folder path for the demo (e.g. my-demo)
+  -f, --framework=framework            Framework to use (e.g. remix)
+  -h, --help                           show CLI help
+  -k, --key=key                        Storyblok Access Token
+  -l, --localmode                      using the local mode
+  -p, --packagemanager=packagemanager  Package manager to use (yarn or npm)
+  -r, --region=region                  Space region (e.g. us-east-1)
+  -v, --version                        show CLI version
 ```
 
-### Local Usage
+By using this you can skip the "questions" of the CLI and fill it with your options directly like so:
 
-You can also start the CLI locally from this repository
+```
+npx @storyblok/create-demo --key YOUR_STORYBLOK_PREVIEW_TOKEN --region us-east-1
+```
+
+
+### Local Development
+
+If you want to contribute you can run the CLI locally and test it with this command:
 
 ```sh-session
 npm i
 ./bin/run --key YOUR_STORYBLOK_PREVIEW_TOKEN
 ```
 
-### Framework Options
+#### Framework Options
 
 The framework options can be set in `src/frameworks.js` and work in combination with the [getting-started](https://github.com/storyblok/getting-started) repository
-
 
 - `name`:  name of the framework
 - `value`: cli value to use for reference
