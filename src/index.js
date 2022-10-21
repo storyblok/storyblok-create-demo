@@ -26,7 +26,7 @@ class CreateStoryblokAppCommand extends Command {
 
     const {flags} = this.parse(CreateStoryblokAppCommand)
     const answers = await inquirer.prompt(prompts, flags)
-    const {framework, folder, packageManager, key, region, localmode} = answers
+    const {framework, folder, packagemanager, key, region, localmode} = answers
     const frameworkDetails = frameworks.find(f => f.value === framework)
 
     if (!framework) {
@@ -124,8 +124,8 @@ class CreateStoryblokAppCommand extends Command {
       log('')
 
       // package manager
-      const mangerInstall = packageManager === 'yarn' ? 'yarn' : 'npm install'
-      const mangerRun = packageManager === 'yarn' ? 'yarn' : 'npm run'
+      const mangerInstall = packagemanager === 'yarn' ? 'yarn' : 'npm install'
+      const mangerRun = packagemanager === 'yarn' ? 'yarn' : 'npm run'
       log(
         chalkSb('1. Start the server: '),
         chalk.yellow(
@@ -169,16 +169,16 @@ Currently Nuxt.js and Next.js are supported as boilerplates to quickly start wit
 CreateStoryblokAppCommand.flags = {
   help: flags.help({char: 'h'}),
   version: flags.version({char: 'v'}),
-  key: flags.string({char: 'k', description: 'Storyblok access key'}),
-  region: flags.string({char: 'r', description: 'Space region'}),
-  directory: flags.string({
+  key: flags.string({char: 'k', description: 'Storyblok Access Token'}),
+  region: flags.string({char: 'r', description: 'Space region (e.g. us-east-1)'}),
+  folder: flags.string({
     char: 'd',
-    description: 'Folder path for the demo',
+    description: 'Folder path for the demo (e.g. my-demo)',
   }),
-  framework: flags.string({char: 'f', description: 'Framework to use'}),
-  packagemanger: flags.string({
+  framework: flags.string({char: 'f', description: 'Framework to use (e.g. remix)'}),
+  packagemanager: flags.string({
     char: 'p',
-    description: 'Package manager to use',
+    description: 'Package manager to use (yarn or npm)',
   }),
   localmode: flags.boolean({
     char: 'l',

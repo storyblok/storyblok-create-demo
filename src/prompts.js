@@ -11,7 +11,7 @@ module.exports = [
   },
   {
     type: 'list',
-    name: 'packageManager',
+    name: 'packagemanager',
     message: 'Select package manager:',
     prefix: '📦',
     choices: [
