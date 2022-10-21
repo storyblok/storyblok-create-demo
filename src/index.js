@@ -17,13 +17,24 @@ const generator = path.resolve(__dirname, './')
 
 class CreateStoryblokAppCommand extends Command {
   async run() {
+    const log = this.log
+    const chalkSb = chalk.hex('#00b3b0').bold
+
+    log('')
+    log(chalkSb('Welcome 👋, please create a new space first: https://app.storyblok.com/#/me/spaces/new'))
+    log('')
+
     const {flags} = this.parse(CreateStoryblokAppCommand)
-    const flagAnswers = flags
-    const answers = await inquirer.prompt(prompts, flagAnswers)
-    const {framework, folder, packageManager, key, region} = answers
+    const answers = await inquirer.prompt(prompts, flags)
+    const {framework, folder, packageManager, key, region, localmode} = answers
+    const frameworkDetails = frameworks.find(f => f.value === framework)
+
+    if (!framework) {
+      throw new Error('Please provide a framework to scaffold with')
+    }
+
     try {
-      const log = this.log
-      const token = flags.key || key
+      const token = flags.key || key || frameworkDetails.token
 
       // region
       const spaceRegion = flags?.region || region
@@ -43,12 +54,13 @@ class CreateStoryblokAppCommand extends Command {
 
       log('')
       log('')
-      log('Welcome to the Storyblok starter CLI!')
+      log(chalkSb('Creating your demo ...'))
 
       // app endpoint connection
       const story = await fetch(
         `${apiEndpoint}stories/home?version=draft&token=${token}`,
       ).then(res => res.json())
+
       let storyId = 0
       if (story?.story) {
         storyId = story.story.id
@@ -65,7 +77,6 @@ class CreateStoryblokAppCommand extends Command {
       }
 
       // framework exmaple cloning
-      const frameworkDetails = frameworks.find(f => f.value === framework)
       const gettingStartedRepo =
         'https://github.com/storyblok/getting-started.git'
       await clone(gettingStartedRepo, 'temp-started', {
@@ -81,50 +92,63 @@ class CreateStoryblokAppCommand extends Command {
         [frameworkDetails.token]: token,
       })
 
-      // https & public folder for editor
+      let pathEditing = `https://app.storyblok.com/#/edit/${storyId}${regionParam}`
       const protocol = frameworkDetails.https ? 'https' : 'http'
-      const localhostPath = `${protocol}://localhost:${frameworkDetails.port}`
-      const publicPath = `./${folder}/${frameworkDetails.public}`
-      createPublicFolder({
-        framework,
-        localhostPath,
-        publicPath,
-        generator,
-      })
+      const localhostPath = `${protocol}://localhost:${frameworkDetails.port}/`
 
-      // bridge connection overrider for custom parent
-      addCustomParentFramework({
-        folder,
-        framework,
-        frameworkDetails,
-        localhostPath,
-      })
+      // https & public folder for editor
+      if (localmode) {
+        const publicPath = `./${folder}/${frameworkDetails.public}`
+        createPublicFolder({
+          framework,
+          localhostPath,
+          publicPath,
+          generator,
+        })
 
-      log('')
+        // bridge connection overrider for custom parent
+
+        addCustomParentFramework({
+          folder,
+          framework,
+          frameworkDetails,
+          localhostPath,
+        })
+        pathEditing = `${localhostPath}/editor.html#/edit/${storyId}${regionParam}`
+      }
+
       log('')
       log(
-        chalk.green('✓ Project created! Now just execute following commands:'),
+        chalkSb('💪 Project created! Now just follow these steps 👇'),
       )
+      log('')
 
       // package manager
       const mangerInstall = packageManager === 'yarn' ? 'yarn' : 'npm install'
       const mangerRun = packageManager === 'yarn' ? 'yarn' : 'npm run'
       log(
-        '1. Start the server: ',
+        chalkSb('1. Start the server: '),
         chalk.yellow(
           `cd ./${folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`,
         ),
       )
       log(
-        '2. Start editing:',
-        chalk.yellow(
-          `${localhostPath}/editor.html#/edit/${storyId}${regionParam}`,
-        ),
+        chalkSb('2. Start editing:'),
+        chalk.yellow(pathEditing),
       )
+      if (!localmode) {
+        log(chalkSb('If you\'re not using local mode, you need to setup mkcert to use the visual editor in the app: '))
+        log('')
+        log(chalkSb('2.a MacOS: '), chalk.yellow('https://www.storyblok.com/faq/setup-dev-server-https-proxy'))
+        log(chalkSb('2.b Windows: '), chalk.yellow('https://www.storyblok.com/faq/setup-dev-server-https-windows'))
+        log(chalkSb('3. Setup your preview url: : '), chalk.yellow('https://www.storyblok.com/docs/guide/getting-started#setup-of-the-visual-editor-preview'), chalkSb(`to your localhost: ${localhostPath}`))
+      }
+
       if (frameworkDetails.tutorialLink) {
+        log('')
         log(
-          '3. Read the tutorial:',
-          chalk.green(frameworkDetails.tutorialLink),
+          chalkSb('📕 Read the tutorial:'),
+          chalk.yellow(frameworkDetails.tutorialLink),
         )
         log('')
         log('')
@@ -143,8 +167,8 @@ Currently Nuxt.js and Next.js are supported as boilerplates to quickly start wit
 `
 
 CreateStoryblokAppCommand.flags = {
-  version: flags.version({char: 'v'}),
   help: flags.help({char: 'h'}),
+  version: flags.version({char: 'v'}),
   key: flags.string({char: 'k', description: 'Storyblok access key'}),
   region: flags.string({char: 'r', description: 'Space region'}),
   directory: flags.string({
@@ -155,6 +179,10 @@ CreateStoryblokAppCommand.flags = {
   packagemanger: flags.string({
     char: 'p',
     description: 'Package manager to use',
+  }),
+  localmode: flags.boolean({
+    char: 'l',
+    description: 'using the local mode',
   }),
 }
 
