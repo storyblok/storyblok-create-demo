@@ -22,7 +22,7 @@ module.exports = [
   {
     name: "Nuxt.js V3 (Vue.js V3)",
     value: "nuxtjs-3",
-    start: "dev",
+    start: "dev-ssl",
     token: "W1vLyxT5rQ15jBpANjnv0gtt",
     config: "nuxt.config.js",
     bridge: "pages/index.vue",
