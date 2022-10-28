@@ -60,6 +60,16 @@ module.exports = [
     port: '3000',
   },
   {
+    name: 'Astro',
+    value: 'astro',
+    start: 'dev',
+    token: 'W1vLyxT5rQ15jBpANjnv0gtt',
+    config: 'astro.config.mjs',
+    bridge: 'src/pages/index.astro',
+    public: 'public',
+    port: '3000',
+  },
+  {
     name: 'Svelte',
     value: 'sveltekit',
     start: 'dev',
