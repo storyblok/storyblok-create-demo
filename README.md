@@ -39,7 +39,7 @@
 3. Execute follwing command with the space preview access token:
 
 ```sh-session
-npx @storyblok/create-demo
+npx @storyblok/create-demo@latest
 
 cd my-app
 npm i && npm run dev
@@ -66,7 +66,7 @@ OPTIONS
 By using this you can skip the "questions" of the CLI and fill it with your options directly like so:
 
 ```
-npx @storyblok/create-demo --key YOUR_STORYBLOK_PREVIEW_TOKEN --region us-east-1
+npx @storyblok/create-demo@latest --key YOUR_STORYBLOK_PREVIEW_TOKEN --region us-east-1
 ```
 
 
