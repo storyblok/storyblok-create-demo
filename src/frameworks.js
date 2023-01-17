@@ -97,6 +97,6 @@ module.exports = [
     bridge: 'src/pages/index.js',
     public: 'static',
     port: '8000',
-    submodules: trued,
+    submodules: true,
   },
 ]
