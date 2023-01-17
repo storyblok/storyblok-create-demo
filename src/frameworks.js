@@ -95,6 +95,6 @@ module.exports = [
     bridge: 'src/pages/home.js',
     public: 'static',
     port: '8000',
-    submodules: true,
+    submodules: trued,
   },
 ]
