@@ -38,10 +38,14 @@ function addCustomParentFramework({
     })
     return
   case 'nuxtjs':
-  case 'nuxtjs-3':
   case 'vuejs':
     replace(`./${folder}/${frameworkDetails.bridge}`, {
       "useStoryblok('home', { version: 'draft' })": `useStoryblok('home', { version: 'draft' }, { customParent: '${localhostPath}'})`,
+    })
+    return
+  case 'nuxtjs-3':
+    replace(`./${folder}/${frameworkDetails.bridge}`, {
+      "useAsyncStoryblok('home', { version: 'draft' })": `useAsyncStoryblok('home', { version: 'draft' }, { customParent: '${localhostPath}'})`,
     })
     return
   case 'reactjs':
