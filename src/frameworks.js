@@ -90,10 +90,11 @@ module.exports = [
     name: 'Gatsby.js (React)',
     value: 'gatsbyjs',
     start: 'start',
-    token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
+    token: 'W1vLyxT5rQ15jBpANjnv0gtt',
     config: 'gatsby-config.js',
-    bridge: 'src/pages/home.js',
+    bridge: 'src/pages/index.js',
     public: 'static',
     port: '8000',
+    submodules: true,
   },
 ]
