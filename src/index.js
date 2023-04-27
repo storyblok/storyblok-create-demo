@@ -8,6 +8,7 @@ const fs = require('fs')
 const copy = require('./copy')
 const prompts = require('./prompts')
 const frameworks = require('./frameworks')
+
 const {
   createPublicFolder,
   addCustomParentFramework,
@@ -47,9 +48,11 @@ class CreateStoryblokAppCommand extends Command {
         )
       }
 
+      let regionCode = "EU"
       if (spaceRegion && spaceRegion.startsWith('us-')) {
         apiEndpoint = 'https://api-us.storyblok.com/v2/cdn/'
         regionParam = `?region=${spaceRegion}`
+        regionCode = "US"
       }
 
       log('')
@@ -88,9 +91,15 @@ class CreateStoryblokAppCommand extends Command {
 
       copy(`./temp-started/${framework}`, folder)
       fs.rmSync('./temp-started', {recursive: true})
-      replace(path.join(folder, frameworkDetails.config), {
+      let replacements = {
         [frameworkDetails.token]: token,
-      })
+      }
+      if (regionCode === 'US') {
+        let regiontoreplace = "region: ''"
+        replacements[regiontoreplace] = "region: '" + regionCode.toLowerCase() + "'"
+      }
+
+      replace(path.join(folder, frameworkDetails.config), replacements)
 
       let pathEditing = `https://app.storyblok.com/#/edit/${storyId}${regionParam}`
       const protocol = frameworkDetails.https ? 'https' : 'http'
