@@ -72,6 +72,8 @@ module.exports = [
     bridge: 'src/pages/index.astro',
     public: 'public',
     port: '3000',
+    submodules: true,
+    tutorialLink: 'https://www.storyblok.com/tp/the-storyblok-astro-ultimate-tutorial',
   },
   {
     name: 'Svelte',
