@@ -146,10 +146,14 @@ class CreateStoryblokAppCommand extends Command {
         chalk.yellow(pathEditing),
       )
       if (!localmode) {
-        log(chalkSb('If you\'re not using local mode, you need to setup mkcert to use the visual editor in the app: '))
-        log('')
-        log(chalkSb('2.a MacOS: '), chalk.yellow('https://www.storyblok.com/faq/setup-dev-server-https-proxy'))
-        log(chalkSb('2.b Windows: '), chalk.yellow('https://www.storyblok.com/faq/setup-dev-server-https-windows'))
+        if (['sveltekit'].includes(framework)) {
+          log(chalkSb('   The framework will automatically start the local server with HTTPS.'))
+        } else {
+          log(chalkSb('If you\'re not using local mode, you need to setup mkcert to use the visual editor in the app: '))
+          log('')
+          log(chalkSb('  2.a MacOS: '), chalk.yellow('https://www.storyblok.com/faq/setup-dev-server-https-proxy'))
+          log(chalkSb('  2.b Windows: '), chalk.yellow('https://www.storyblok.com/faq/setup-dev-server-https-windows'))
+        }
         log(chalkSb('3. Setup your preview url: : '), chalk.yellow('https://www.storyblok.com/docs/guide/getting-started#setup-of-the-visual-editor-preview'), chalkSb(`to your localhost: ${localhostPath}`))
       }
 
