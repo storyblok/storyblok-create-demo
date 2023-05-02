@@ -4,7 +4,8 @@
   "version": "0.0.24",
   "author": "Alexander Feiglstorfer",
   "contributors": [
-    {"name":"Lisi Linhart","url":"https://github.com/lisilinhart"}
+    {"name":"Lisi Linhart","url":"https://github.com/lisilinhart"},
+    {"name":"Roberto Butti","url":"https://github.com/roberto-butti"}
   ],
   "bin": {
     "create-demo": "bin/run"

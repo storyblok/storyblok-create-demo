@@ -48,11 +48,11 @@ class CreateStoryblokAppCommand extends Command {
         )
       }
 
-      let regionCode = "EU"
+      let regionCode = 'EU'
       if (spaceRegion && spaceRegion.startsWith('us-')) {
         apiEndpoint = 'https://api-us.storyblok.com/v2/cdn/'
         regionParam = `?region=${spaceRegion}`
-        regionCode = "US"
+        regionCode = 'US'
       }
 
       log('')
