@@ -50,8 +50,8 @@ module.exports = [
   {
     type: 'confirm',
     name: 'localmode',
-    message: 'Storyblok will be served locally on your localhost instead of app.storyblok.com',
+    message: 'Serve Storyblok locally (to skip https setup, not recommended)',
     prefix: '💻',
-    default: true,
+    default: false,
   },
 ]
