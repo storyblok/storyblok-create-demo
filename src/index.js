@@ -146,6 +146,7 @@ class CreateStoryblokAppCommand extends Command {
         chalk.yellow(pathEditing),
       )
       if (!localmode) {
+        log('')
         log(chalkSb('If you\'re not using local mode, you need to setup mkcert to use the visual editor in the app: '))
         log('')
         log(chalkSb('2.a MacOS: '), chalk.yellow('https://www.storyblok.com/faq/setup-dev-server-https-proxy'))
