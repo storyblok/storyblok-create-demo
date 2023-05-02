@@ -65,5 +65,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/storyblok/storyblok-create-demo.git"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
