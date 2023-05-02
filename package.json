@@ -19,6 +19,13 @@
   "bugs": {
     "url": "https://github.com/storyblok/storyblok-create-demo/issues"
   },
+  "scripts": {
+    "lint": "eslint -c ./.eslintrc.json src",
+    "prepack": "oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md",
+    "prepare": "is-ci || husky install"
+  },
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -58,12 +65,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/storyblok/storyblok-create-demo.git"
-  },
-  "scripts": {
-    "posttest": "eslint -c ./.eslintrc.json src",
-    "prepack": "oclif-dev readme",
-    "test": "echo NO TESTS",
-    "version": "oclif-dev readme && git add README.md",
-    "prepare": "is-ci || husky install"
   }
 }
