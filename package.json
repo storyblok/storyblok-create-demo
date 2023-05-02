@@ -4,7 +4,14 @@
   "version": "0.0.26",
   "author": "Alexander Feiglstorfer",
   "contributors": [
-    {"name":"Lisi Linhart","url":"https://github.com/lisilinhart"}
+    {
+      "name": "Lisi Linhart",
+      "url": "https://github.com/lisilinhart"
+    },
+    {
+      "name": "Roberto Butti",
+      "url": "https://github.com/roberto-butti"
+    }
   ],
   "bin": {
     "create-demo": "bin/run"
@@ -12,19 +19,30 @@
   "bugs": {
     "url": "https://github.com/storyblok/storyblok-create-demo/issues"
   },
+  "scripts": {
+    "lint": "eslint -c ./.eslintrc.json src",
+    "prepack": "oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md",
+    "prepare": "is-ci || husky install"
+  },
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^5",
+    "chalk": "^4.1.2",
     "inquirer": "^8.2.4",
-    "node-fetch": "^2.6.7",
-    "chalk": "^4.1.2"
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@oclif/dev-cli": "^1",
     "eslint": "^8.18.0",
     "eslint-config-oclif": "^4.0.0",
-    "eslint-plugin-unicorn": "^42.0.0"
+    "eslint-plugin-unicorn": "^42.0.0",
+    "husky": "^8.0.3",
+    "is-ci": "^3.0.1"
   },
   "engines": {
     "node": ">=14.0.0"
@@ -47,11 +65,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/storyblok/storyblok-create-demo.git"
-  },
-  "scripts": {
-    "posttest": "eslint -c ./.eslintrc.json src",
-    "prepack": "oclif-dev readme",
-    "test": "echo NO TESTS",
-    "version": "oclif-dev readme && git add README.md"
   }
 }
