@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import * as fs from 'node:fs'
 
 export default function (file: fs.PathOrFileDescriptor, replacements: { [x: string]: string }) {
   return new Promise((resolve, reject) => {

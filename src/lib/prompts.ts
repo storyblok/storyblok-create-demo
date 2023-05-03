@@ -46,5 +46,5 @@ export default [
 
       return 'Please enter a valid name for your folder:'
     },
-  }
+  },
 ]
