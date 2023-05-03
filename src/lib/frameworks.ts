@@ -1,4 +1,19 @@
-module.exports = [
+export interface Framework {
+  name: string
+  value: string
+  start: string
+  token: string
+  config: string
+  bridge: string
+  public: string
+  port: string
+  https?: boolean
+  submodules?: boolean
+  tutorialLink?: boolean
+  branch?: string
+}
+
+const frameworks = [
   {
     name: 'Vue.js',
     value: 'vuejs',
@@ -99,4 +114,6 @@ module.exports = [
     port: '8000',
     submodules: true,
   },
-]
+] as Framework[]
+
+export default frameworks

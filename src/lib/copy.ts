@@ -1,7 +1,7 @@
-const fs = require('fs')
-const path = require('path')
+import * as fs from 'fs'
+import * as path from 'path'
 
-const copyFolderSync = function (from, to) {
+const copyFolderSync = function (from: string, to: string) {
   fs.mkdirSync(to)
   for (const element of fs.readdirSync(from)) {
     if (fs.lstatSync(path.join(from, element)).isFile()) {
@@ -12,4 +12,4 @@ const copyFolderSync = function (from, to) {
   }
 }
 
-module.exports = copyFolderSync
+export default copyFolderSync
