@@ -3,19 +3,29 @@
 		<img  src="https://a.storyblok.com/f/88751/1776x360/51af0ebe23/shared_logos_framework.png" alt="Storyblok Logo">
 	</a>
 	<h1 align="center">Create Storyblok Demo</h1>
-	<p align="center">A CLI to quickly start a project with your favourite framework, already set up with <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
-  <p>Supports <a href="https://nextjs.org/" target="_blank">Next.js</a>, <a href="https://nuxtjs.org/" target="_blank">Nuxt.js (2 & 3)</a>, <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</a>, <a href="https://vuejs.org/" target="_blank">Vue.js</a>, <a href="https://reactjs.org/" target="_blank">React.js</a>, <a href="https://remix.run/" target="_blank">Remix</a> and <a href="https://svelte.dev/" target="_blank">Svelte</a></p>
+	<p align="center">A CLI to quickly start a project with your favorite framework, already set up with <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
+  <p>Supports
+  <a href="https://nextjs.org/" target="_blank">Next.js</a>,
+  <a href="https://nuxtjs.org/" target="_blank">Nuxt.js (2 & 3)</a>,
+  <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</a>,
+  <a href="https://vuejs.org/" target="_blank">Vue.js</a>,
+  <a href="https://reactjs.org/" target="_blank">React.js</a>,
+  <a href="https://astro.build/" target="_blank">Astro</a>,
+  <a href="https://remix.run/" target="_blank">Remix</a>,
+  and <a href="https://svelte.dev/" target="_blank">Svelte</a></p>
 </div>
 
 <p align="center">
  <a href="https://oclif.io">
    <img src="https://img.shields.io/badge/cli-oclif-brightgreen.svg">
    </a>
-    <a href="https://npmjs.org/package/create-storyblok-app">
-   <img src="https://img.shields.io/npm/v/create-storyblok-app.svg">
+    <a href="https://npmjs.org/package/%40storyblok%2Fcreate-demo">
+   <img src="https://img.shields.io/npm/v/%40storyblok%2Fcreate-demo
+">
    </a>
-    <a href="https://npmjs.org/package/create-storyblok-app">
-   <img src="https://img.shields.io/npm/dw/create-storyblok-app.svg">
+    <a href="https://npmjs.org/package/%40storyblok%2Fcreate-demo">
+   <img src="https://img.shields.io/npm/dw/%40storyblok%2Fcreate-demo
+">
    </a>
     <a href="https://github.com/storyblok/create-storyblok-app/blob/master/package.json">
    <img src="https://img.shields.io/npm/l/create-storyblok-app.svg">
@@ -36,7 +46,7 @@
 
 1. Signup at https://app.storyblok.com/
 2. Create a new space and retrieve the space preview token under Space -> Settings -> Api Keys
-3. Execute follwing command with the space preview access token:
+3. Execute the following commands (use your preview access token when prompted when running the `npx` command):
 
 ```sh-session
 npx @storyblok/create-demo@latest
@@ -45,11 +55,11 @@ cd my-app
 npm i && npm run dev
 ```
 
-4. Open the Storyblok editor and directly edit your content locally: http://localhost:3000/editor.html
+4. Open the Storyblok App following the URL suggested by the output provided by the commands. It depends on the HTTPS configuration and the port used by the frameworks.
 
 # CLI Options
 
-The CLI has different options that can be filled, you can see all the options by running `npx @storyblok/create-demo --help`: 
+The CLI has different options that can be filled, you can see all the options by running `npx @storyblok/create-demo --help`:
 
 ```
 OPTIONS
@@ -90,9 +100,8 @@ The framework options can be set in `src/frameworks.js` and work in combination 
 - `config`: file that has the access token
 - `bridge`: file that is loading the bridge
 - `public`: public folder path for the static files
-- `port`:  port the framework starts, 
+- `port`:  port the framework starts,
 - `branch`: (optional) for testing other branches on the `getting-started` repository
 - `https`: (optional) if the framework starts with https
 - `submodules`: (optional) if the framework in `getting-started` is a submodule
 - `tutorialLink`: (optional) - link to the framwork tutorial
-
