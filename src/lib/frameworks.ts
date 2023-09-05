@@ -1,15 +1,27 @@
 export interface Framework {
+  /** The name of the framework */
   name: string
+  /** The framework identifier */
   value: string
+  /** argument used for `npm run` . Typically is dev, but you can customize it for example `dev-ssl` */
   start: string
+  /** the Storyblok preview access token */
   token: string
+  /** the file that contains the initializaztion of the Stroyblok Client (with the setting for the access token) */
   config: string
+  /** the file that instance the Storyblok bridge */
   bridge: string
+  /** the public/static folder of the framework (typically `public` or `static`) */
   public: string
+  /** the port used by the framework to start the local webserver */
   port: string
+  /** if the HTTPS protocol is used */
   https?: boolean
+  /** if the submodules is used in the Getting Started repository */
   submodules?: boolean
+  /** the Storyblok Ultimate Tutorial link useful for the recap message */
   tutorialLink?: boolean
+  /** the branch used */
   branch?: string
 }
 
