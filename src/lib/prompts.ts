@@ -39,7 +39,7 @@ export default [
     message: 'Local folder name for the project',
     default: 'my-storyblok-demo',
     prefix: '📁',
-    validate(value: string) {
+    validate(value: string): boolean|string {
       if (value.length > 0) {
         return true
       }

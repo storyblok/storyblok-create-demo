@@ -14,7 +14,7 @@ export function createPublicFolder({
   publicPath,
   generator,
   localhostPath,
-}: CreatePublicFolderOptions) {
+}: CreatePublicFolderOptions): void {
   if (fs.existsSync(publicPath)) {
     fs.copyFileSync(
       `${generator}/editor.html`,
@@ -42,7 +42,7 @@ export function addCustomParentFramework({
   framework,
   frameworkDetails,
   localhostPath,
-}: AddCustomParentFrameworkOptions) {
+}: AddCustomParentFrameworkOptions): void {
   switch (framework) {
   case 'gatsbyjs':
   case 'nextjs':

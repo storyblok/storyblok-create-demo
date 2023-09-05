@@ -1,5 +1,12 @@
 import {spawn} from 'node:child_process'
 
+interface Options {
+  git?: any;
+  shallow?: boolean;
+  submodules?: boolean;
+  checkout?: string;
+}
+
 /**
  *
  * @param {string} repo repo's clone path
@@ -8,14 +15,7 @@ import {spawn} from 'node:child_process'
  * @return {promise}
  */
 
-interface Options {
-  git?: any;
-  shallow?: boolean;
-  submodules?: boolean;
-  checkout?: string;
-}
-
-export default function (repo: string, targetPath: string, opts: Options) {
+export default function (repo: string, targetPath: string, opts: Options): Promise<any> {
   opts = opts || {}
 
   const git = opts.git || 'git'

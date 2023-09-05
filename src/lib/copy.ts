@@ -1,7 +1,7 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 
-const copyFolderSync = function (from: string, to: string) {
+const copyFolderSync = function (from: string, to: string): void {
   fs.mkdirSync(to)
   for (const element of fs.readdirSync(from)) {
     if (fs.lstatSync(path.join(from, element)).isFile()) {

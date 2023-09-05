@@ -1,6 +1,6 @@
 import * as fs from 'node:fs'
 
-export default function (file: fs.PathOrFileDescriptor, replacements: { [x: string]: string }) {
+export default function (file: fs.PathOrFileDescriptor, replacements: { [x: string]: string }): Promise<any> {
   return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf8', function (err, data) {
       if (err) {
