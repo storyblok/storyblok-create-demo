@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable unicorn/import-style */
 import {Command, Flags} from '@oclif/core'
 import * as inquirer from 'inquirer'
@@ -117,6 +118,16 @@ export default class CreateStoryblokAppCommand extends Command {
         log(
           chalk.red(
             "ⅹ Or the space is located in a region outside the EU. In that case please provide the '--region' parameter",
+          ),
+        )
+        return
+      }
+
+      // check if target directoy exists
+      if (fs.existsSync(folder)) {
+        log(
+          chalk.red(
+            `I can't create the demo because the directory '${folder}' already exists. Try to define another directory name with the option '-d'.`,
           ),
         )
         return
