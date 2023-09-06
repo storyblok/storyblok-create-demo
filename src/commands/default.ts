@@ -11,6 +11,7 @@ import prompts from '../lib/prompts'
 import frameworks from '../lib/frameworks'
 import clone from '../lib/clone'
 import replace from '../lib/replace'
+import regions, {Region} from '../lib/regions'
 
 export default class CreateStoryblokAppCommand extends Command {
   static description = 'CLI for quickly starting a project with Storyblok';
@@ -21,7 +22,7 @@ export default class CreateStoryblokAppCommand extends Command {
     key: Flags.string({char: 'k', description: 'Storyblok Access Token'}),
     region: Flags.string({
       char: 'r',
-      description: 'Space region (e.g. us-east-1)',
+      description: 'Space region (EU, US or CN)',
     }),
     folder: Flags.string({
       char: 'd',
@@ -73,7 +74,6 @@ export default class CreateStoryblokAppCommand extends Command {
     const {framework, folder, packagemanager, key, region} =
       answers
     const frameworkDetails = frameworks.find(f => f.value === framework)
-
     if (!framework || !frameworkDetails) {
       throw new Error('Please provide a framework to scaffold with')
     }
@@ -82,21 +82,31 @@ export default class CreateStoryblokAppCommand extends Command {
       const token = flags.key || key || frameworkDetails.token
 
       // region
-      const spaceRegion = flags?.region || region
-      let apiEndpoint = 'https://api.storyblok.com/v2/cdn/'
+      const spaceRegion: string = flags?.region || region // EU , US or CN
+      let selectedRegion: Region | undefined
+      if (Object.keys(regions).includes(spaceRegion)) {
+        selectedRegion = regions[spaceRegion]
+      } else {
+        log(
+          chalk.red(
+            `Please provide a valid region via '-r' parameter : ${Object.keys(regions).join(', ')}`,
+          ),
+        )
+        return
+      }
+
       let regionParam = ''
 
       if (!token) {
-        throw new Error(
-          'Please provide your access key with the --key argument',
+        log(
+          chalk.red(
+            'Please provide your access key with the --key argument',
+          ),
         )
       }
 
-      let regionCode = 'EU'
-      if (spaceRegion && spaceRegion.startsWith('us-')) {
-        apiEndpoint = 'https://api-us.storyblok.com/v2/cdn/'
-        regionParam = `?region=${spaceRegion}`
-        regionCode = 'US'
+      if (spaceRegion && ['US'].includes(spaceRegion)) {
+        regionParam = `?region=${selectedRegion.value}`
       }
 
       log('')
@@ -105,9 +115,8 @@ export default class CreateStoryblokAppCommand extends Command {
 
       // app endpoint connection
       const story: any = await fetch(
-        `${apiEndpoint}stories/home?version=draft&token=${token}`,
+        `${selectedRegion.apiEndpoint}stories/home?version=draft&token=${token}`,
       ).then(res => res.json())
-
       let storyId = 0
       if (story?.story) {
         storyId = story.story.id
@@ -117,7 +126,7 @@ export default class CreateStoryblokAppCommand extends Command {
         )
         log(
           chalk.red(
-            "ⅹ Or the space is located in a region outside the EU. In that case please provide the '--region' parameter",
+            `ⅹ Or the space is located in a region outside the ${spaceRegion}. In that case please provide the '--region' parameter`,
           ),
         )
         return
@@ -154,15 +163,15 @@ export default class CreateStoryblokAppCommand extends Command {
       const replacements = {
         [frameworkDetails.token]: token,
       }
-      if (regionCode === 'US') {
+      if (['US', 'CN'].includes(spaceRegion)) {
         const regiontoreplace = "region: ''"
         replacements[regiontoreplace] =
-          "region: '" + regionCode.toLowerCase() + "'"
+          "region: '" + spaceRegion.toLowerCase() + "'"
       }
 
       replace(path.join(folder, frameworkDetails.config), replacements)
 
-      const pathEditing = `https://app.storyblok.com/#/edit/${storyId}${regionParam}`
+      const pathEditing = `${selectedRegion.urlUi}/#/edit/${storyId}${regionParam}`
       const protocol = frameworkDetails.https ? 'https' : 'http'
       const localhostPath = `${protocol}://localhost:${frameworkDetails.port}/`
 

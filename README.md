@@ -67,16 +67,15 @@ OPTIONS
   -f, --framework=framework            Framework to use (e.g. remix)
   -h, --help                           show CLI help
   -k, --key=key                        Storyblok Access Token
-  -l, --localmode                      using the local mode
   -p, --packagemanager=packagemanager  Package manager to use (yarn or npm)
-  -r, --region=region                  Space region (e.g. us-east-1)
+  -r, --region=region                  Space region (e.g. EU, US or CN)
   -v, --version                        show CLI version
 ```
 
 By using this you can skip the "questions" of the CLI and fill it with your options directly like so:
 
 ```
-npx @storyblok/create-demo@latest --key YOUR_STORYBLOK_PREVIEW_TOKEN --region us-east-1
+npx @storyblok/create-demo@latest --key YOUR_STORYBLOK_PREVIEW_TOKEN --region US
 ```
 
 

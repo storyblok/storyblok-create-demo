@@ -29,9 +29,9 @@ export default [
     type: 'list',
     name: 'region',
     message: 'Space Region (optional, EU is used by default):',
-    default: 'eu-central-1',
+    default: 'EU',
     prefix: '🌍',
-    choices: regions,
+    choices: Object.keys(regions),
   },
   {
     type: 'input',
