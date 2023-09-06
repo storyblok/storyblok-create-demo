@@ -21,8 +21,12 @@ export interface Framework {
   submodules?: boolean
   /** the Storyblok Ultimate Tutorial link useful for the recap message */
   tutorialLink?: boolean
+  /** The repository URL for cloning the project */
+  repositoryUrl?: string
   /** the branch used */
   branch?: string
+  /** true if the SSL certificate is created via mkcert or fals or null if the framework uses vite basicSsl */
+  usingMkcert?: boolean
 }
 
 const frameworks = [
@@ -49,14 +53,15 @@ const frameworks = [
   {
     name: 'Nuxt.js V3 (Vue.js V3)',
     value: 'nuxtjs-3',
-    start: 'dev',
+    start: 'dev-ssl',
     token: 'W1vLyxT5rQ15jBpANjnv0gtt',
     config: 'nuxt.config.js',
     bridge: 'pages/index.vue',
     public: 'public',
     port: '3000',
-    https: false,
-    submodules: true,
+    branch: 'part-1',
+    repositoryUrl: 'https://github.com/storyblok/nuxt-ultimate-tutorial.git',
+    usingMkcert: true,
   },
   {
     name: 'Next.js (React.js)',
@@ -67,7 +72,8 @@ const frameworks = [
     bridge: 'pages/index.js',
     public: 'public',
     port: '3000',
-    submodules: true,
+    branch: 'part-1',
+    repositoryUrl: 'https://github.com/storyblok/next.js-ultimate-tutorial.git',
   },
   {
     name: 'React.js',
@@ -78,7 +84,8 @@ const frameworks = [
     bridge: 'src/App.js',
     public: 'public',
     port: '3000',
-    submodules: true,
+    branch: 'master',
+    repositoryUrl: 'https://github.com/storyblok/storyblok-react-boilerplate.git',
   },
   {
     name: 'Remix',
@@ -99,8 +106,9 @@ const frameworks = [
     bridge: 'src/pages/index.astro',
     public: 'public',
     port: '3000',
-    submodules: true,
     tutorialLink: 'https://www.storyblok.com/tp/the-storyblok-astro-ultimate-tutorial',
+    branch: 'part-1',
+    repositoryUrl: 'https://github.com/storyblok/astro-ultimate-tutorial.git',
   },
   {
     name: 'Svelte',
@@ -112,7 +120,8 @@ const frameworks = [
     public: 'static',
     port: '5173',
     https: true,
-    submodules: true,
+    repositoryUrl: 'https://github.com/storyblok/sveltekit-ultimate-tutorial.git',
+    branch: 'part-1-sveltekit-ut',
     tutorialLink: 'https://www.storyblok.com/tp/the-storyblok-sveltekit-ultimate-tutorial',
   },
   {
