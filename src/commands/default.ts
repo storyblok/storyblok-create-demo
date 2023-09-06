@@ -104,12 +104,19 @@ export default class CreateStoryblokAppCommand extends Command {
       }
 
       // framework exmaple cloning
-      const gettingStartedRepo =
-        'https://github.com/storyblok/getting-started.git'
-      await clone(gettingStartedRepo, 'temp-started', {
+      let repositoryUrl = 'https://github.com/storyblok/getting-started.git'
+      let submodules = frameworkDetails.submodules ?? false
+      let targetPath = 'temp-started'
+      if (frameworkDetails.repositoryUrl) {
+        repositoryUrl = frameworkDetails.repositoryUrl
+        submodules = false
+        targetPath = `temp-started/${framework}`
+      }
+
+      await clone(repositoryUrl, targetPath, {
         shallow: true,
         checkout: frameworkDetails.branch ?? 'master',
-        submodules: frameworkDetails.submodules ?? false,
+        submodules: submodules,
       })
 
       copy(`./temp-started/${framework}`, folder)
@@ -136,10 +143,11 @@ export default class CreateStoryblokAppCommand extends Command {
       // package manager
       const mangerInstall = packagemanager === 'yarn' ? 'yarn' : 'npm install'
       const mangerRun = packagemanager === 'yarn' ? 'yarn' : 'npm run'
+      const executeMkcert = frameworkDetails.usingMkcert ? ' && mkcert localhost ' : ''
       log(
         chalkSb('1. Start the server: '),
         chalk.yellow(
-          `cd ./${folder} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`,
+          `cd ./${folder} ${executeMkcert} && ${mangerInstall} && ${mangerRun} ${frameworkDetails.start}`,
         ),
       )
       log(chalkSb('2. Start editing:'), chalk.yellow(pathEditing))
