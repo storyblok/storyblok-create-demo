@@ -23,8 +23,8 @@
    <img src="https://img.shields.io/npm/v/%40storyblok%2Fcreate-demo
 ">
    </a>
-    <a href="https://npmjs.org/package/%40storyblok%2Fcreate-demo">
-   <img src="https://img.shields.io/npm/dw/%40storyblok%2Fcreate-demo
+    <a href="https://npmjs.org/package/%40storyblok/create-demo">
+   <img src="https://img.shields.io/npm/dw/%40storyblok/create-demo
 ">
    </a>
     <a href="https://github.com/storyblok/create-storyblok-app/blob/master/package.json">
