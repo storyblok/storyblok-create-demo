@@ -38,7 +38,7 @@ export default class CreateStoryblokAppCommand extends Command {
     }),
   };
 
-  async run(): Promise<void> {
+  async run(): Promise<void|number> {
     const log = this.log.bind(this)
     const chalkSb = chalk.hex('#00b3b0').bold
     log('')
@@ -69,16 +69,20 @@ export default class CreateStoryblokAppCommand extends Command {
     )
     log('')
 
+    let directoryTargetCreated = false
+    let directoryTempCreated = false
+
     const {flags} = await this.parse(CreateStoryblokAppCommand)
     const answers = await inquirer.prompt(prompts, flags)
     const {framework, folder, packagemanager, key, region} =
       answers
     const frameworkDetails = frameworks.find(f => f.value === framework)
-    if (!framework || !frameworkDetails) {
-      throw new Error('Please provide a framework to scaffold with')
-    }
-
     try {
+      if (!framework || !frameworkDetails) {
+        const frameworkList = frameworks.map(item => item.value).join(', ')
+        throw new Error('Please provide a framework to scaffold with via  `-f <value>`, or `--framework=<value>`.\n Available values: ' + frameworkList)
+      }
+
       const token = flags.key || key || frameworkDetails.token
 
       // region
@@ -87,12 +91,8 @@ export default class CreateStoryblokAppCommand extends Command {
       if (Object.keys(regions).includes(spaceRegion)) {
         selectedRegion = regions[spaceRegion]
       } else {
-        log(
-          chalk.red(
-            `Please provide a valid region via '-r' parameter : ${Object.keys(regions).join(', ')}`,
-          ),
-        )
-        return
+        throw new Error(`Please provide a valid region via '-r' parameter : ${Object.keys(regions).join(', ')}`)
+        return 2
       }
 
       let regionParam = ''
@@ -157,9 +157,12 @@ export default class CreateStoryblokAppCommand extends Command {
         checkout: frameworkDetails.branch ?? 'master',
         submodules: submodules,
       })
+      directoryTempCreated = true
 
       copy(`./temp-started/${framework}`, folder)
+      directoryTargetCreated = true
       fs.rmSync('./temp-started', {recursive: true})
+      directoryTempCreated = false
       const replacements = {
         [frameworkDetails.token]: token,
       }
@@ -227,9 +230,29 @@ export default class CreateStoryblokAppCommand extends Command {
         log('')
       }
     } catch (error) {
-      console.error(error)
-      fs.rmSync('./temp-started', {recursive: true})
-      fs.rmSync(`./${folder}`, {recursive: true})
+      if (error instanceof Error) {
+        log(
+          chalk.red(
+            error.message,
+          ),
+        )
+      } else {
+        log(
+          chalk.red(
+            'Generic Error',
+          ),
+        )
+      }
+
+      if (directoryTempCreated && fs.existsSync('./temp-started')) {
+        fs.rmSync('./temp-started', {recursive: true})
+        directoryTempCreated = false
+      }
+
+      if (directoryTargetCreated && fs.existsSync(`./${folder}`)) {
+        fs.rmSync(`./${folder}`, {recursive: true})
+        directoryTargetCreated = false
+      }
     }
   }
 }
