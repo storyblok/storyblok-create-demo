@@ -41,7 +41,7 @@ const frameworks = [
     port: '3000',
   },
   {
-    name: 'Nuxt.js V2 (Vue.js V2)',
+    name: 'Nuxt.js 2',
     value: 'nuxtjs',
     start: 'dev',
     token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
@@ -51,7 +51,7 @@ const frameworks = [
     port: '3000',
   },
   {
-    name: 'Nuxt.js V3 (Vue.js V3)',
+    name: 'Nuxt.js 3',
     value: 'nuxtjs-3',
     start: 'dev-ssl',
     token: 'W1vLyxT5rQ15jBpANjnv0gtt',
@@ -64,7 +64,7 @@ const frameworks = [
     usingMkcert: true,
   },
   {
-    name: 'Next.js (React.js)',
+    name: 'Next.js',
     value: 'nextjs',
     start: 'dev',
     token: 'W1vLyxT5rQ15jBpANjnv0gtt',
@@ -111,7 +111,7 @@ const frameworks = [
     repositoryUrl: 'https://github.com/storyblok/astro-ultimate-tutorial.git',
   },
   {
-    name: 'Svelte',
+    name: 'SvelteKit',
     value: 'sveltekit',
     start: 'dev',
     token: 'W1vLyxT5rQ15jBpANjnv0gtt',
@@ -125,7 +125,7 @@ const frameworks = [
     tutorialLink: 'https://www.storyblok.com/tp/the-storyblok-sveltekit-ultimate-tutorial',
   },
   {
-    name: 'Gatsby.js (React)',
+    name: 'Gatsby.js',
     value: 'gatsbyjs',
     start: 'start',
     token: 'W1vLyxT5rQ15jBpANjnv0gtt',

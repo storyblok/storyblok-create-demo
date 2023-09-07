@@ -12,7 +12,7 @@
   <a href="https://reactjs.org/" target="_blank">React.js</a>,
   <a href="https://astro.build/" target="_blank">Astro</a>,
   <a href="https://remix.run/" target="_blank">Remix</a>,
-  and <a href="https://svelte.dev/" target="_blank">Svelte</a></p>
+  and <a href="https://kit.svelte.dev/" target="_blank">SvelteKit</a></p>
 </div>
 
 <p align="center">
