@@ -19,12 +19,12 @@
  <a href="https://oclif.io">
    <img src="https://img.shields.io/badge/cli-oclif-brightgreen.svg">
    </a>
-    <a href="https://npmjs.org/package/%40storyblok/create-demo">
-   <img src="https://img.shields.io/npm/v/%40storyblok/create-demo
+    <a href="https://npmjs.org/package/@storyblok/create-demo">
+   <img src="https://img.shields.io/npm/v/%40storyblok%2Fcreate-demo
 ">
    </a>
-    <a href="https://npmjs.org/package/%40storyblok/create-demo">
-   <img src="https://img.shields.io/npm/dw/%40storyblok/create-demo
+    <a href="https://npmjs.org/package/@storyblok/create-demo">
+   <img src="https://img.shields.io/npm/dw/%40storyblok%2Fcreate-demo
 ">
    </a>
     <a href="https://github.com/storyblok/create-storyblok-app/blob/master/package.json">
