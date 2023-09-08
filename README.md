@@ -16,10 +16,8 @@
 </div>
 
 <p align="center">
- <a href="https://oclif.io">
-   <img src="https://img.shields.io/badge/cli-oclif-brightgreen.svg">
-   </a>
-    <a href="https://npmjs.org/package/@storyblok/create-demo">
+
+  <a href="https://npmjs.org/package/@storyblok/create-demo">
    <img src="https://img.shields.io/npm/v/%40storyblok%2Fcreate-demo">
    </a>
     <a href="https://npmjs.org/package/@storyblok/create-demo">
@@ -42,16 +40,16 @@
 
 # Getting Started
 
-1. Signup at https://app.storyblok.com/
-2. Create a new space and retrieve the space preview token under your space in "Settings -> Access Tokens" menu item
+1. Signup at https://app.storyblok.com/;
+2. Create a new space and retrieve the space preview token under your space in "Settings -> Access Tokens" menu item;
 3. Execute the following commands (use your preview access token when prompted when running the `npx` command):
 
-```sh-session
+~~~bash
 npx @storyblok/create-demo@latest
 
 cd my-app
 npm i && npm run dev
-```
+~~~
 
 4. Open the Storyblok App following the URL suggested by the output provided by the commands. It depends on the HTTPS configuration and the port used by the frameworks.
 
@@ -59,7 +57,7 @@ npm i && npm run dev
 
 The CLI has different options that can be filled, you can see all the options by running `npx @storyblok/create-demo --help`:
 
-```
+~~~
 OPTIONS
   -d, --folder=folder                  Folder path for the demo (e.g. my-demo)
   -f, --framework=framework            Framework to use (e.g. remix)
@@ -68,23 +66,23 @@ OPTIONS
   -p, --packagemanager=packagemanager  Package manager to use (yarn or npm)
   -r, --region=region                  Space region (e.g. EU, US or CN)
   -v, --version                        show CLI version
-```
+~~~
 
-By using this you can skip the "questions" of the CLI and fill it with your options directly like so:
+By using this, you can skip the "questions" of the CLI and fill it with your options directly like so:
 
-```
+~~~bash
 npx @storyblok/create-demo@latest --key YOUR_STORYBLOK_PREVIEW_TOKEN --region US
-```
+~~~
 
 
 ### Local Development
 
-If you want to contribute you can run the CLI locally and test it with this command:
+If you want to contribute, you can run the CLI locally and test it with this command:
 
-```sh-session
+~~~bash
 npm i
 ./bin/dev --key YOUR_STORYBLOK_PREVIEW_TOKEN
-```
+~~~
 
 #### Framework Options
 
