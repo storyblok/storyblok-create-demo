@@ -16,7 +16,7 @@
     }
   ],
   "bin": {
-    "create-demo": "./bin/run"
+    "create-demo": "bin/run"
   },
   "files": [
     "/bin",
