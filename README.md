@@ -1,6 +1,6 @@
 <div align="center">
 	<a  href="https://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app"  align="center">
-		<img  src="https://a.storyblok.com/f/88751/1776x360/51af0ebe23/shared_logos_framework.png" alt="Storyblok Logo">
+		<img  src="https://a.storyblok.com/f/88751/1776x360/795b73df6d/create-demo-app.png/m/" alt="Storyblok Create Demo CLI">
 	</a>
 	<h1 align="center">Create Storyblok Demo</h1>
 	<p align="center">A CLI to quickly start a project with your favorite framework, already set up with <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
