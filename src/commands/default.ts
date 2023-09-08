@@ -30,7 +30,7 @@ export default class CreateStoryblokAppCommand extends Command {
     }),
     framework: Flags.string({
       char: 'f',
-      description: 'Framework to use (e.g. remix)',
+      description: 'Framework to use (vuejs, nuxtjs, nuxtjs-3, nextjs, reactjs, remix, astro, sveltekit, gatsbyjs)',
     }),
     packagemanager: Flags.string({
       char: 'p',
