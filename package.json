@@ -16,7 +16,7 @@
     }
   ],
   "bin": {
-    "create-demo": "./bin/run.mjs"
+    "create-demo": "./bin/run"
   },
   "files": [
     "/bin",
