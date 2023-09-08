@@ -19,8 +19,8 @@
  <a href="https://oclif.io">
    <img src="https://img.shields.io/badge/cli-oclif-brightgreen.svg">
    </a>
-    <a href="https://npmjs.org/package/%40storyblok%2Fcreate-demo">
-   <img src="https://img.shields.io/npm/v/%40storyblok%2Fcreate-demo
+    <a href="https://npmjs.org/package/%40storyblok/create-demo">
+   <img src="https://img.shields.io/npm/v/%40storyblok/create-demo
 ">
    </a>
     <a href="https://npmjs.org/package/%40storyblok/create-demo">
