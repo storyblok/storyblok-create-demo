@@ -43,7 +43,7 @@
 # Getting Started
 
 1. Signup at https://app.storyblok.com/
-2. Create a new space and retrieve the space preview token under Space -> Settings -> Api Keys
+2. Create a new space and retrieve the space preview token under your space in "Settings -> Access Tokens" menu item
 3. Execute the following commands (use your preview access token when prompted when running the `npx` command):
 
 ```sh-session
@@ -83,12 +83,12 @@ If you want to contribute you can run the CLI locally and test it with this comm
 
 ```sh-session
 npm i
-./bin/run --key YOUR_STORYBLOK_PREVIEW_TOKEN
+./bin/dev --key YOUR_STORYBLOK_PREVIEW_TOKEN
 ```
 
 #### Framework Options
 
-The framework options can be set in `src/frameworks.js` and work in combination with the [getting-started](https://github.com/storyblok/getting-started) repository
+The framework options can be set in `src/lib/frameworks.ts` and work in combination with the [getting-started](https://github.com/storyblok/getting-started) or The Ultimate Tutorial repositories:
 
 - `name`:  name of the framework
 - `value`: cli value to use for reference
@@ -98,7 +98,8 @@ The framework options can be set in `src/frameworks.js` and work in combination 
 - `bridge`: file that is loading the bridge
 - `public`: public folder path for the static files
 - `port`:  port the framework starts,
-- `branch`: (optional) for testing other branches on the `getting-started` repository
+- `repositoryUrl`: (optional) the URL repository for cloning the template;
+- `branch`: (optional) for setting a specific branches
 - `https`: (optional) if the framework starts with https
 - `submodules`: (optional) if the framework in `getting-started` is a submodule
 - `tutorialLink`: (optional) - link to the framwork tutorial
