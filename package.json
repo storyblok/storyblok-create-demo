@@ -1,6 +1,6 @@
 {
   "name": "@storyblok/create-demo",
-  "description": "A CLI to quickly start a Storyblok project",
+  "description": "A CLI tool for quickly starting a Storyblok project",
   "version": "1.0.1",
   "author": "Alexander Feiglstorfer",
   "main": "dist/index.js",
@@ -82,7 +82,10 @@
   },
   "homepage": "https://github.com/storyblok/storyblok-create-demo",
   "keywords": [
-    "oclif"
+    "CLI",
+    "Storyblok",
+    "project starter",
+    "command line tool"
   ],
   "license": "MIT",
   "repository": {

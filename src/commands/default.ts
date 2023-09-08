@@ -14,7 +14,7 @@ import replace from '../lib/replace'
 import regions, {Region} from '../lib/regions'
 
 export default class CreateStoryblokAppCommand extends Command {
-  static description = 'CLI for quickly starting a project with Storyblok';
+  static description = 'The CLI tool for quickly starting a Storyblok project';
 
   static flags = {
     help: Flags.help({char: 'h'}),
