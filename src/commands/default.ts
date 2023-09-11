@@ -5,6 +5,7 @@ import * as inquirer from 'inquirer'
 import * as chalk from 'chalk'
 import * as path from 'node:path'
 import * as fs from 'node:fs'
+import fetch from 'node-fetch'
 
 import copy from '../lib/copy'
 import prompts from '../lib/prompts'

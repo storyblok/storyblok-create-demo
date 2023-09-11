@@ -1,7 +1,7 @@
 export interface Framework {
-  /** The name of the framework */
+  /** The name of the framework used as label in the tool */
   name: string
-  /** The framework identifier */
+  /** The framework identifier used as key in the tool */
   value: string
   /** argument used for `npm run` . Typically is dev, but you can customize it for example `dev-ssl` */
   start: string
@@ -15,9 +15,9 @@ export interface Framework {
   public: string
   /** the port used by the framework to start the local webserver */
   port: string
-  /** if the HTTPS protocol is used */
+  /** @deprecated if the HTTPS protocol is used */
   https?: boolean
-  /** if the submodules is used in the Getting Started repository */
+  /** @deprecated if the submodules is used in the Getting Started repository */
   submodules?: boolean
   /** the Storyblok Ultimate Tutorial link useful for the recap message */
   tutorialLink?: boolean
@@ -119,7 +119,6 @@ const frameworks = [
     bridge: 'src/routes/+page.svelte',
     public: 'static',
     port: '5173',
-    https: true,
     repositoryUrl: 'https://github.com/storyblok/sveltekit-ultimate-tutorial.git',
     branch: 'part-1-sveltekit-ut',
     tutorialLink: 'https://www.storyblok.com/tp/the-storyblok-sveltekit-ultimate-tutorial',
