@@ -35,7 +35,7 @@ export default class CreateStoryblokAppCommand extends Command {
     }),
     packagemanager: Flags.string({
       char: 'p',
-      description: 'Package manager to use (yarn or npm)',
+      description: 'Package manager to use (yarn or npm or bun)',
     }),
   };
 
@@ -184,8 +184,19 @@ export default class CreateStoryblokAppCommand extends Command {
       log('')
 
       // package manager
-      const mangerInstall = packagemanager === 'yarn' ? 'yarn' : 'npm install'
-      const mangerRun = packagemanager === 'yarn' ? 'yarn' : 'npm run'
+      let mangerInstall = 'npm install'
+      let mangerRun = 'npm run'
+      switch (packagemanager) {
+      case 'yarn':
+        mangerInstall = 'yarn'
+        mangerRun = 'yarn run'
+        break
+      case 'bun':
+        mangerInstall = 'bun install'
+        mangerRun = 'bun run'
+        break
+      }
+
       const executeMkcert = frameworkDetails.usingMkcert ? ' && mkcert localhost ' : ''
       log(
         chalkSb('1. Start the server: '),

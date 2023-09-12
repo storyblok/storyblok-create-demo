@@ -17,6 +17,7 @@ export default [
     choices: [
       {name: 'yarn', value: 'yarn'},
       {name: 'npm', value: 'npm'},
+      {name: 'bun', value: 'bun'},
     ],
   },
   {
