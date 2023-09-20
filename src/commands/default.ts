@@ -13,6 +13,7 @@ import frameworks from '../lib/frameworks'
 import clone from '../lib/clone'
 import replace from '../lib/replace'
 import regions, {Region} from '../lib/regions'
+import {addCustomParentFramework} from '../lib/helper-replace'
 
 export default class CreateStoryblokAppCommand extends Command {
   static description = 'The CLI tool for quickly starting a Storyblok project';
@@ -171,6 +172,15 @@ export default class CreateStoryblokAppCommand extends Command {
         const regiontoreplace = "region: ''"
         replacements[regiontoreplace] =
           "region: '" + spaceRegion.toLowerCase() + "'"
+      }
+
+      if (spaceRegion === 'CN') {
+        addCustomParentFramework({
+          folder,
+          framework,
+          frameworkDetails,
+          localhostPath: 'https://app.storyblokchina.cn',
+        })
       }
 
       replace(path.join(folder, frameworkDetails.config), replacements)
