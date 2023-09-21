@@ -27,12 +27,6 @@ const regions: RegionMap = {
     apiEndpoint: 'https://api-us.storyblok.com/v2/cdn/',
     urlUi: 'https://app.storyblok.com',
   },
-  CN: {
-    name: 'CN',
-    value: '',
-    apiEndpoint: 'https://app.storyblokchina.cn/v2/cdn/',
-    urlUi: 'https://app.storyblokchina.cn/fe/editor_v2',
-  },
 
 }
 

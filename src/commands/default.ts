@@ -23,7 +23,7 @@ export default class CreateStoryblokAppCommand extends Command {
     key: Flags.string({char: 'k', description: 'Storyblok Access Token'}),
     region: Flags.string({
       char: 'r',
-      description: 'Space region (EU, US or CN)',
+      description: 'Space region (EU or US)',
     }),
     folder: Flags.string({
       char: 'd',

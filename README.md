@@ -64,7 +64,7 @@ OPTIONS
   -h, --help                           show CLI help
   -k, --key=key                        Storyblok Access Token
   -p, --packagemanager=packagemanager  Package manager to use (yarn or npm)
-  -r, --region=region                  Space region (e.g. EU, US or CN)
+  -r, --region=region                  Space region (EU, US). The support for the China region will be introduced in the next release.
   -v, --version                        show CLI version
 ~~~
 
