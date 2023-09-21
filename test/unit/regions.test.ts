@@ -6,10 +6,10 @@ describe('Regions', function () {
   it('contains US', function () {
     assert.equal(Object.keys(regions).includes('US'), true)
   })
-  it('not contains CN', function () {
-    assert.equal(Object.keys(regions).includes('CN'), false)
+  it('contains CN', function () {
+    assert.equal(Object.keys(regions).includes('CN'), true)
   })
-  it('contains 2 regions', function () {
-    assert.equal(Object.keys(regions).length, 2)
+  it('contains 3 regions', function () {
+    assert.equal(Object.keys(regions).length, 3)
   })
 })
