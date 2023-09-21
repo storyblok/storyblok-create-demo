@@ -69,7 +69,7 @@ export function addCustomParentFramework({
     return
   case 'sveltekit':
     replace(`./${folder}/${frameworkDetails.bridge}`, {
-      'useStoryblokBridge(story.id, (newStory) => (story = newStory))': `useStoryblokBridge(story.id, (newStory) => (story = newStory), { customParent: '${localhostPath}'})`,
+      'useStoryblokBridge(data.story.id, (newStory) => (data.story = newStory))': `useStoryblokBridge(data.story.id, (newStory) => (data.story = newStory), { customParent: '${localhostPath}'})`,
     })
   }
 }
