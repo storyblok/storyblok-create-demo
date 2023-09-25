@@ -1,4 +1,11 @@
-const spawn = require('child_process').spawn
+import {spawn} from 'node:child_process'
+
+interface Options {
+  git?: any;
+  shallow?: boolean;
+  submodules?: boolean;
+  checkout?: string;
+}
 
 /**
  *
@@ -7,7 +14,8 @@ const spawn = require('child_process').spawn
  * @param {Object} opts options
  * @return {promise}
  */
-module.exports = function (repo, targetPath, opts) {
+
+export default function (repo: string, targetPath: string, opts: Options): Promise<any> {
   opts = opts || {}
 
   const git = opts.git || 'git'
@@ -29,27 +37,23 @@ module.exports = function (repo, targetPath, opts) {
 
   const process = spawn(git, args)
   return new Promise((resolve, reject) => {
-    process.on('close', function (status) {
+    process.on('close', function (status: number) {
       if (status === 0) {
         if (opts.checkout) {
-          _checkout()
+          const process = spawn(git, ['checkout', opts.checkout], {cwd: targetPath})
+          process.on('close', function (status: number) {
+            if (status === 0) {
+              resolve(true)
+            } else {
+              reject(new Error("'git checkout' failed with status " + status))
+            }
+          })
         } else {
-          resolve()
+          resolve(true)
         }
       } else {
         reject(new Error("'git clone' failed with status " + status))
       }
     })
-    function _checkout() {
-      const args = ['checkout', opts.checkout]
-      const process = spawn(git, args, {cwd: targetPath})
-      process.on('close', function (status) {
-        if (status === 0) {
-          resolve()
-        } else {
-          reject(new Error("'git checkout' failed with status " + status))
-        }
-      })
-    }
   })
 }

@@ -1,20 +1,27 @@
-const fs = require('fs')
-const copy = require('./copy')
-const replace = require('./replace')
+import * as fs from 'node:fs'
+import copy from './copy'
+import replace from './replace'
 
-function createPublicFolder({
+interface CreatePublicFolderOptions {
+  framework: string
+  publicPath: string
+  generator: string
+  localhostPath: string
+}
+
+export function createPublicFolder({
   framework,
   publicPath,
   generator,
   localhostPath,
-}) {
+}: CreatePublicFolderOptions): void {
   if (fs.existsSync(publicPath)) {
     fs.copyFileSync(
-      `${generator}/../templates/static/editor.html`,
+      `${generator}/editor.html`,
       publicPath + '/editor.html',
     )
   } else {
-    copy(`${generator}/../templates/static`, publicPath)
+    copy(`${generator}/editor.html`, publicPath)
   }
 
   replace(`./${publicPath}/editor.html`, {
@@ -23,12 +30,19 @@ function createPublicFolder({
   })
 }
 
-function addCustomParentFramework({
+interface AddCustomParentFrameworkOptions {
+  folder: string
+  framework: string
+  frameworkDetails: any
+  localhostPath: string
+}
+
+export function addCustomParentFramework({
   folder,
   framework,
   frameworkDetails,
   localhostPath,
-}) {
+}: AddCustomParentFrameworkOptions): void {
   switch (framework) {
   case 'gatsbyjs':
   case 'nextjs':
@@ -55,12 +69,7 @@ function addCustomParentFramework({
     return
   case 'sveltekit':
     replace(`./${folder}/${frameworkDetails.bridge}`, {
-      'useStoryblokBridge(story.id, (newStory) => (story = newStory))': `useStoryblokBridge(story.id, (newStory) => (story = newStory), { customParent: '${localhostPath}'})`,
+      'useStoryblokBridge(data.story.id, (newStory) => (data.story = newStory))': `useStoryblokBridge(data.story.id, (newStory) => (data.story = newStory), { customParent: '${localhostPath}'})`,
     })
   }
-}
-
-module.exports = {
-  createPublicFolder,
-  addCustomParentFramework,
 }

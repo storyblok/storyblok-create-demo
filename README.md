@@ -1,21 +1,27 @@
 <div align="center">
 	<a  href="https://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app"  align="center">
-		<img  src="https://a.storyblok.com/f/88751/1776x360/51af0ebe23/shared_logos_framework.png" alt="Storyblok Logo">
+		<img  src="https://a.storyblok.com/f/88751/1776x360/795b73df6d/create-demo-app.png/m/" alt="Storyblok Create Demo CLI">
 	</a>
 	<h1 align="center">Create Storyblok Demo</h1>
-	<p align="center">A CLI to quickly start a project with your favourite framework, already set up with <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
-  <p>Supports <a href="https://nextjs.org/" target="_blank">Next.js</a>, <a href="https://nuxtjs.org/" target="_blank">Nuxt.js (2 & 3)</a>, <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</a>, <a href="https://vuejs.org/" target="_blank">Vue.js</a>, <a href="https://reactjs.org/" target="_blank">React.js</a>, <a href="https://remix.run/" target="_blank">Remix</a> and <a href="https://svelte.dev/" target="_blank">Svelte</a></p>
+	<p align="center">A CLI to quickly start a project with your favorite framework, already set up with <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
+  <p>Supports
+  <a href="https://nextjs.org/" target="_blank">Next.js</a>,
+  <a href="https://nuxtjs.org/" target="_blank">Nuxt.js (2 & 3)</a>,
+  <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</a>,
+  <a href="https://vuejs.org/" target="_blank">Vue.js</a>,
+  <a href="https://reactjs.org/" target="_blank">React.js</a>,
+  <a href="https://astro.build/" target="_blank">Astro</a>,
+  <a href="https://remix.run/" target="_blank">Remix</a>,
+  and <a href="https://kit.svelte.dev/" target="_blank">SvelteKit</a></p>
 </div>
 
 <p align="center">
- <a href="https://oclif.io">
-   <img src="https://img.shields.io/badge/cli-oclif-brightgreen.svg">
+
+  <a href="https://npmjs.org/package/@storyblok/create-demo">
+   <img src="https://img.shields.io/npm/v/%40storyblok%2Fcreate-demo">
    </a>
-    <a href="https://npmjs.org/package/create-storyblok-app">
-   <img src="https://img.shields.io/npm/v/create-storyblok-app.svg">
-   </a>
-    <a href="https://npmjs.org/package/create-storyblok-app">
-   <img src="https://img.shields.io/npm/dw/create-storyblok-app.svg">
+    <a href="https://npmjs.org/package/@storyblok/create-demo">
+   <img src="https://img.shields.io/npm/dw/%40storyblok%2Fcreate-demo">
    </a>
     <a href="https://github.com/storyblok/create-storyblok-app/blob/master/package.json">
    <img src="https://img.shields.io/npm/l/create-storyblok-app.svg">
@@ -34,54 +40,53 @@
 
 # Getting Started
 
-1. Signup at https://app.storyblok.com/
-2. Create a new space and retrieve the space preview token under Space -> Settings -> Api Keys
-3. Execute follwing command with the space preview access token:
+1. Signup at https://app.storyblok.com/;
+2. Create a new space and retrieve the space preview token under your space in "Settings -> Access Tokens" menu item;
+3. Execute the following commands (use your preview access token when prompted when running the `npx` command):
 
-```sh-session
+~~~bash
 npx @storyblok/create-demo@latest
 
 cd my-app
 npm i && npm run dev
-```
+~~~
 
-4. Open the Storyblok editor and directly edit your content locally: http://localhost:3000/editor.html
+4. Open the Storyblok App following the URL suggested by the output provided by the commands. It depends on the HTTPS configuration and the port used by the frameworks.
 
 # CLI Options
 
-The CLI has different options that can be filled, you can see all the options by running `npx @storyblok/create-demo --help`: 
+The CLI has different options that can be filled, you can see all the options by running `npx @storyblok/create-demo --help`:
 
-```
+~~~
 OPTIONS
   -d, --folder=folder                  Folder path for the demo (e.g. my-demo)
   -f, --framework=framework            Framework to use (e.g. remix)
   -h, --help                           show CLI help
   -k, --key=key                        Storyblok Access Token
-  -l, --localmode                      using the local mode
   -p, --packagemanager=packagemanager  Package manager to use (yarn or npm)
-  -r, --region=region                  Space region (e.g. us-east-1)
+  -r, --region=region                  Space region (EU, US). The support for the China region will be introduced in the next release.
   -v, --version                        show CLI version
-```
+~~~
 
-By using this you can skip the "questions" of the CLI and fill it with your options directly like so:
+By using this, you can skip the "questions" of the CLI and fill it with your options directly like so:
 
-```
-npx @storyblok/create-demo@latest --key YOUR_STORYBLOK_PREVIEW_TOKEN --region us-east-1
-```
+~~~bash
+npx @storyblok/create-demo@latest --key YOUR_STORYBLOK_PREVIEW_TOKEN --region US
+~~~
 
 
 ### Local Development
 
-If you want to contribute you can run the CLI locally and test it with this command:
+If you want to contribute, you can run the CLI locally and test it with this command:
 
-```sh-session
+~~~bash
 npm i
-./bin/run --key YOUR_STORYBLOK_PREVIEW_TOKEN
-```
+./bin/dev --key YOUR_STORYBLOK_PREVIEW_TOKEN
+~~~
 
 #### Framework Options
 
-The framework options can be set in `src/frameworks.js` and work in combination with the [getting-started](https://github.com/storyblok/getting-started) repository
+The framework options can be set in `src/lib/frameworks.ts` and work in combination with the [getting-started](https://github.com/storyblok/getting-started) or The Ultimate Tutorial repositories:
 
 - `name`:  name of the framework
 - `value`: cli value to use for reference
@@ -90,9 +95,9 @@ The framework options can be set in `src/frameworks.js` and work in combination 
 - `config`: file that has the access token
 - `bridge`: file that is loading the bridge
 - `public`: public folder path for the static files
-- `port`:  port the framework starts, 
-- `branch`: (optional) for testing other branches on the `getting-started` repository
+- `port`:  port the framework starts,
+- `repositoryUrl`: (optional) the URL repository for cloning the template;
+- `branch`: (optional) for setting a specific branches
 - `https`: (optional) if the framework starts with https
 - `submodules`: (optional) if the framework in `getting-started` is a submodule
 - `tutorialLink`: (optional) - link to the framwork tutorial
-

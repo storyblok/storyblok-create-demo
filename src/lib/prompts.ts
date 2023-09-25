@@ -1,7 +1,7 @@
-const frameworks = require('./frameworks')
-const regions = require('./regions')
+import frameworks from './frameworks'
+import regions from './regions'
 
-module.exports = [
+export default [
   {
     type: 'list',
     name: 'framework',
@@ -17,6 +17,7 @@ module.exports = [
     choices: [
       {name: 'yarn', value: 'yarn'},
       {name: 'npm', value: 'npm'},
+      {name: 'bun', value: 'bun'},
     ],
   },
   {
@@ -29,9 +30,9 @@ module.exports = [
     type: 'list',
     name: 'region',
     message: 'Space Region (optional, EU is used by default):',
-    default: 'eu-central-1',
+    default: 'EU',
     prefix: '🌍',
-    choices: regions,
+    choices: Object.keys(regions),
   },
   {
     type: 'input',
@@ -39,19 +40,12 @@ module.exports = [
     message: 'Local folder name for the project',
     default: 'my-storyblok-demo',
     prefix: '📁',
-    validate(value) {
+    validate(value: string): boolean|string {
       if (value.length > 0) {
         return true
       }
 
       return 'Please enter a valid name for your folder:'
     },
-  },
-  {
-    type: 'confirm',
-    name: 'localmode',
-    message: 'Serve Storyblok locally (to skip https setup, not recommended)',
-    prefix: '💻',
-    default: false,
   },
 ]

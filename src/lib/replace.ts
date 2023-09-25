@@ -1,6 +1,6 @@
-const fs = require('fs')
+import * as fs from 'node:fs'
 
-module.exports = (file, replacements) => {
+export default function (file: fs.PathOrFileDescriptor, replacements: { [x: string]: string }): Promise<any> {
   return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf8', function (err, data) {
       if (err) {

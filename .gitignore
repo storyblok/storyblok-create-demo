@@ -5,4 +5,5 @@
 /yarn-lock.json
 /tmp
 node_modules
-/test*
+
+.DS_Store
