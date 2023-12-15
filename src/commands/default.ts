@@ -95,7 +95,7 @@ export default class CreateStoryblokAppCommand extends Command {
       if (isValidRegion) {
         selectedRegion = Object.values(regions).find(r => r.value === spaceRegion)
       } else {
-        throw new Error(`Please provide a valid region via '-r' parameter : ${Object.keys(regions).join(', ')}`)
+        throw new Error(`Please provide a valid region via '-r' parameter : ${possibleRegionValues.join(', ')}`)
       }
 
       let regionParam = ''
