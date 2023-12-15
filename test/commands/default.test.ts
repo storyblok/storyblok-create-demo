@@ -11,8 +11,8 @@ describe('Launch command', () => {
 
   test
   .stdout({print: false})
-  .command(['default', '--folder=mytestdir', '--packagemanager=npm', '--framework=astro', '--region=EU', '--key=TEST'])
+  .command(['default', '--folder=mytestdir', '--packagemanager=npm', '--framework=astro', '--region=YOLO', '--key=TEST'])
   .it('with wrong region', async ctx => {
-    expect(ctx.stdout).to.contain('the space is located in a region outside')
+    expect(ctx.stdout).to.contain('Please provide a valid region')
   })
 })

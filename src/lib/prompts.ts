@@ -32,7 +32,10 @@ export default [
     message: 'Space Region (optional, EU is used by default):',
     default: 'EU',
     prefix: '🌍',
-    choices: Object.keys(regions),
+    choices: Object.values(regions).map(r => ({
+      name: r.name,
+      value: r.value,
+    })),
   },
   {
     type: 'input',

@@ -24,7 +24,7 @@ export default class CreateStoryblokAppCommand extends Command {
     key: Flags.string({char: 'k', description: 'Storyblok Access Token'}),
     region: Flags.string({
       char: 'r',
-      description: 'Space region (EU or US)',
+      description: 'Space region (eu-central-1, us-east-1, cn-north-1, ca-central-1, ap-southeast-2)',
     }),
     folder: Flags.string({
       char: 'd',
@@ -90,11 +90,12 @@ export default class CreateStoryblokAppCommand extends Command {
       // region
       const spaceRegion: string = flags?.region || region // EU , US or CN
       let selectedRegion: Region | undefined
-      if (Object.keys(regions).includes(spaceRegion)) {
-        selectedRegion = regions[spaceRegion]
+      const possibleRegionValues = Object.values(regions).map(r => r.value)
+      const isValidRegion = possibleRegionValues.includes(spaceRegion)
+      if (isValidRegion) {
+        selectedRegion = Object.values(regions).find(r => r.value === spaceRegion)
       } else {
-        throw new Error(`Please provide a valid region via '-r' parameter : ${Object.keys(regions).join(', ')}`)
-        return 2
+        throw new Error(`Please provide a valid region via '-r' parameter : ${possibleRegionValues.join(', ')}`)
       }
 
       let regionParam = ''
@@ -107,7 +108,7 @@ export default class CreateStoryblokAppCommand extends Command {
         )
       }
 
-      if (spaceRegion && ['US'].includes(spaceRegion)) {
+      if (spaceRegion && isValidRegion) {
         regionParam = `?region=${selectedRegion.value}`
       }
 
