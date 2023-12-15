@@ -9,7 +9,7 @@ describe('Regions', function () {
   it('contains CN', function () {
     assert.equal(Object.keys(regions).includes('CN'), true)
   })
-  it('contains 3 regions', function () {
-    assert.equal(Object.keys(regions).length, 3)
+  it('contains 5 regions', function () {
+    assert.equal(Object.keys(regions).length, 5)
   })
 })
