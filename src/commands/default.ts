@@ -12,7 +12,7 @@ import prompts from '../lib/prompts'
 import frameworks from '../lib/frameworks'
 import clone from '../lib/clone'
 import replace from '../lib/replace'
-import regions, {Region} from '../lib/regions'
+import regions from '../lib/regions'
 import {addCustomParentFramework} from '../lib/helper-replace'
 
 export default class CreateStoryblokAppCommand extends Command {
@@ -89,11 +89,11 @@ export default class CreateStoryblokAppCommand extends Command {
 
       // region
       const spaceRegion: string = flags?.region || region // EU , US or CN
-      let selectedRegion: Region | undefined
+      let selectedRegion = regions.EU
       const possibleRegionValues = Object.values(regions).map(r => r.value)
       const isValidRegion = possibleRegionValues.includes(spaceRegion)
       if (isValidRegion) {
-        selectedRegion = Object.values(regions).find(r => r.value === spaceRegion)
+        selectedRegion = Object.values(regions).find(r => r.value === spaceRegion) ?? regions.EU
       } else {
         throw new Error(`Please provide a valid region via '-r' parameter : ${possibleRegionValues.join(', ')}`)
       }
