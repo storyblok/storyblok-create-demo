@@ -39,7 +39,7 @@ const frameworks = [
     bridge: 'src/pages/Home.vue',
     public: 'public',
     port: '3000',
-    tutorialLink: 'https://www.storyblok.com/tp/add-a-headless-CMS-to-vuejs-in-5-minutes'
+    tutorialLink: 'https://www.storyblok.com/tp/add-a-headless-CMS-to-vuejs-in-5-minutes',
   },
   {
     name: 'Nuxt',
