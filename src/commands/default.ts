@@ -162,6 +162,8 @@ export default class CreateStoryblokAppCommand extends Command {
       })
       directoryTempCreated = true
 
+      fs.rmSync(`./temp-started/${framework}/.git`, {recursive: true})
+
       copy(`./temp-started/${framework}`, folder)
       directoryTargetCreated = true
       fs.rmSync('./temp-started', {recursive: true})
