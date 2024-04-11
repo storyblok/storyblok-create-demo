@@ -161,8 +161,9 @@ export default class CreateStoryblokAppCommand extends Command {
         submodules: submodules,
       })
       directoryTempCreated = true
-
-      fs.rmSync(`./temp-started/${framework}/.git`, {recursive: true})
+      try {
+        fs.rmSync(`./temp-started/${framework}/.git`, {recursive: true})
+      } catch {}
 
       const readmeContent = `
 # Storyblok quick starter project
@@ -237,7 +238,7 @@ In the folder you have some files like:
       log('')
       log(
         chalkSb(
-          'You need to setup mkcert to use the visual editor in the app: ',
+          'You need to setup mkcert to use the Visual Editor in the app: ',
         ),
       )
       log('')

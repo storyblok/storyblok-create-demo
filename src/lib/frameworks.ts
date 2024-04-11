@@ -31,7 +31,7 @@ export interface Framework {
 
 const frameworks = [
   {
-    name: 'Vue.js',
+    name: 'Vue',
     value: 'vuejs',
     start: 'dev',
     token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
@@ -39,20 +39,11 @@ const frameworks = [
     bridge: 'src/pages/Home.vue',
     public: 'public',
     port: '3000',
+    tutorialLink: 'https://www.storyblok.com/tp/add-a-headless-CMS-to-vuejs-in-5-minutes',
   },
   {
-    name: 'Nuxt.js 2',
-    value: 'nuxtjs',
-    start: 'dev',
-    token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
-    config: 'nuxt.config.js',
-    bridge: 'pages/_.vue',
-    public: 'static',
-    port: '3000',
-  },
-  {
-    name: 'Nuxt.js 3',
-    value: 'nuxtjs-3',
+    name: 'Nuxt',
+    value: 'nuxt',
     start: 'dev-ssl',
     token: 'W1vLyxT5rQ15jBpANjnv0gtt',
     config: 'nuxt.config.js',
@@ -76,8 +67,8 @@ const frameworks = [
     repositoryUrl: 'https://github.com/storyblok/next.js-ultimate-tutorial.git',
   },
   {
-    name: 'React.js',
-    value: 'reactjs',
+    name: 'React',
+    value: 'react',
     start: 'start',
     token: 'W1vLyxT5rQ15jBpANjnv0gtt',
     config: 'src/index.js',
@@ -86,16 +77,20 @@ const frameworks = [
     port: '3000',
     branch: 'master',
     repositoryUrl: 'https://github.com/storyblok/storyblok-react-boilerplate.git',
+    tutorialLink: 'https://www.storyblok.com/tp/headless-cms-react',
   },
   {
     name: 'Remix',
     value: 'remix',
     start: 'dev',
     token: 'd6IKUtAUDiKyAhpJtrLFcwtt',
-    config: 'app/root.jsx',
-    bridge: 'app/routes/home.jsx',
+    config: 'app/root.tsx',
+    bridge: 'app/routes/$.jsx',
     public: 'public',
     port: '3000',
+    repositoryUrl: 'https://github.com/storyblok/remix-ultimate-tutorial',
+    branch: 'part-1',
+    tutorialLink: 'https://www.storyblok.com/tp/the-storyblok-remix-ultimate-tutorial',
   },
   {
     name: 'Astro',
@@ -124,15 +119,18 @@ const frameworks = [
     tutorialLink: 'https://www.storyblok.com/tp/the-storyblok-sveltekit-ultimate-tutorial',
   },
   {
-    name: 'Gatsby.js',
-    value: 'gatsbyjs',
+    name: 'Gatsby',
+    value: 'gatsby',
     start: 'start',
     token: 'W1vLyxT5rQ15jBpANjnv0gtt',
     config: 'gatsby-config.js',
     bridge: 'src/pages/index.js',
     public: 'static',
     port: '8000',
-    submodules: true,
+    tutorialLink: 'https://www.storyblok.com/tp/storyblok-gatsby-ultimate-tutorial',
+    branch: 'part-1',
+    repositoryUrl: 'https://github.com/storyblok/gatsby-ultimate-tutorial',
+
   },
 ] as Framework[]
 

@@ -6,10 +6,10 @@
 	<p align="center">A CLI to quickly start a project with your favorite framework, already set up with <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app" target="_blank">Storyblok</a>, Headless CMS.</p> <br />
   <p>Supports
   <a href="https://nextjs.org/" target="_blank">Next.js</a>,
-  <a href="https://nuxtjs.org/" target="_blank">Nuxt.js (2 & 3)</a>,
-  <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</a>,
-  <a href="https://vuejs.org/" target="_blank">Vue.js</a>,
-  <a href="https://reactjs.org/" target="_blank">React.js</a>,
+  <a href="https://nuxtjs.org/" target="_blank">Nuxt</a>,
+  <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby</a>,
+  <a href="https://vuejs.org/" target="_blank">Vue</a>,
+  <a href="https://reactjs.org/" target="_blank">React</a>,
   <a href="https://astro.build/" target="_blank">Astro</a>,
   <a href="https://remix.run/" target="_blank">Remix</a>,
   and <a href="https://kit.svelte.dev/" target="_blank">SvelteKit</a></p>
