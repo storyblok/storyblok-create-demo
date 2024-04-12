@@ -60,7 +60,7 @@ The CLI has different options that can be filled, you can see all the options by
 ~~~
 OPTIONS
   -d, --folder=folder                  Folder path for the demo (e.g. my-demo)
-  -f, --framework=framework            Framework to use (e.g. remix)
+  -f, --framework=framework            Framework to use (e.g. astro)
   -h, --help                           show CLI help
   -k, --key=key                        Storyblok Access Token
   -p, --packagemanager=packagemanager  Package manager to use (yarn or npm)
