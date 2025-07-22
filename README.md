@@ -1,3 +1,12 @@
+> [!WARNING]
+> **📦 Package Deprecation Notice**
+> 
+> This package has been deprecated
+> 
+> ⚠️ This repository has been archived and is no longer maintained. Please use `storyblok create` command available on the [CLI v4](https://github.com/storyblok/monoblok/blob/main/packages/cli/src/commands/create/README.md) 
+> 
+> 
+
 <div align="center">
 	<a  href="https://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=create-storyblok-app"  align="center">
 		<img  src="https://a.storyblok.com/f/88751/1776x360/795b73df6d/create-demo-app.png/m/" alt="Storyblok Create Demo CLI">
